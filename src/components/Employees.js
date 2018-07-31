@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Table, Icon, Divider } from 'antd';
+import { Table, Divider,Button,Input, Select,Row, Col} from 'antd';
+
+const Option = Select.Option;
+
+const Search = Input.Search;
 
 const columns = [{
     title: 'Id',
     dataIndex: 'id',
     key: 'id',
-    render: text => <a href="javascript:;">{text}</a>,
+    render: text => <a >{text}</a>,
   }, {
     title: '姓名',
     dataIndex: 'name',
@@ -27,9 +31,9 @@ const columns = [{
     key: 'command',
     render: (text, record) => (
       <span>
-        <a href="javascript:;" className="ant-dropdown-link">修改 </a>
+        <a  className="ant-dropdown-link">修改 </a>
         <Divider type="vertical" />
-        <a href="javascript:;">冻结</a>
+        <a >冻结</a>
         <Divider type="vertical" />
         
       </span>
@@ -72,8 +76,24 @@ const columns = [{
 
 export default class Employees extends Component{
     render(){
+      function handleChange(value) {
+        console.log(`selected ${value}`);
+      }
         return(
-            <Table columns={columns} dataSource={data} /> 
+          <div>
+             <Row>
+               <Col span={8}><Button onClick={this.handleAdd} type="primary">新建</Button></Col>
+               {/* <Col span={8}></Col> */}
+               <Col span={8}><Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
+            <Option value="email">email</Option>
+            <Option value="name">name</Option>
+            <Option value="phone">phone</Option>
+            </Select>
+            <Search onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
+             </Col>
+              </Row>  
+            <Table bordered columns={columns} dataSource={data} />
+          </div>
         );
     }
 }

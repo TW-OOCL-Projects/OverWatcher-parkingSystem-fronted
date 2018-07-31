@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import MenuList from './MenuList';
 import EmployeeHead from './EmployeeHead';
 import Employees from './Employees';
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content} = Layout;
 
 export default class EmployeeManagerInterface extends Component{
     render(){

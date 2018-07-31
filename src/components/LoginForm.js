@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Input, Button,Col,Card } from 'antd';
-import { History } from 'react-router';
-export default class LoginForm extends React.Component {
+export default class LoginForm extends Component {
     enterEmployeeTable(e){
         this.props.history.push('/Employees')
     }
