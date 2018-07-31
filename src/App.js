@@ -10,7 +10,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">OverWatcher Parking System Login</h1>
+                    <h1 className="App-title">OverWatcher Parking System</h1>
                 </header>
                 <LoginForm/>
             </div>
