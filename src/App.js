@@ -10,10 +10,10 @@ class App extends Component {
         return (
             <div className="App">
                 <BrowserRouter>
-                        <div>
-                            <Route exact path='/' component={LoginForm}/>
-                            <Route path='/Employees' component={EmployeeManagerInterface} />
-                        </div>
+                    <div>
+                        <Route exact path='/' component={LoginForm}/>
+                        <Route path='/Employees' component={EmployeeManagerInterface} />
+                    </div>
                 </BrowserRouter> 
             </div>
         );
