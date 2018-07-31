@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Icon, Input, Button,Col,Card } from 'antd';
-
-export default class NormalLoginForm extends React.Component {
-
+import { History } from 'react-router';
+export default class LoginForm extends React.Component {
+    enterEmployeeTable(e){
+        this.props.history.push('/Employees')
+    }
     render() {
         return (
             <div style={{margin:100}}>
@@ -14,9 +16,9 @@ export default class NormalLoginForm extends React.Component {
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password"
                                placeholder="请输入密码" />
                         <br/><br/>
-                        <Button type="primary" htmlType="submit" className="login-form-button" style={{width:"100%"}}>登录</Button>
+                        <Button type="primary" htmlType="submit" onClick={e => this.enterEmployeeTable()}
+                            className="login-form-button" style={{width:"100%"}}>登录</Button> 
                     </Card>
-
                 </Col>
             </div>
         );
