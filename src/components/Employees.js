@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Divider,Button,Input, Select,Row, Col} from 'antd';
+import { Table, Divider,Button,Input, Select,Row, Col,Icon} from 'antd';
 
 const Option = Select.Option;
 
@@ -72,6 +72,110 @@ const columns = [{
     phone: '13000000000',
     position: '',
     address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
+  },{
+      key: '1',
+      id: '',
+      name: 'EmployeeName',
+      email: 'email',
+      phone: '13000000000',
+      position: '',
+      address: 'New York No. 1 Lake Park',
   }];
 
 export default class Employees extends Component{
@@ -82,17 +186,19 @@ export default class Employees extends Component{
         return(
           <div>
              <Row>
-               <Col span={8}><Button onClick={this.handleAdd} type="primary">新建</Button></Col>
+               <Col span={4} style={{textAlign:"left"}}><Button onClick={this.handleAdd} type="primary"> 新 建 </Button></Col>
                {/* <Col span={8}></Col> */}
-               <Col span={8}><Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
-            <Option value="email">email</Option>
-            <Option value="name">name</Option>
-            <Option value="phone">phone</Option>
-            </Select>
-            <Search onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
+               <Col span={16} offset={4} style={{textAlign:"right"}}>
+                   <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
+                        <Option value="email">Email</Option>
+                        <Option value="name">Name</Option>
+                        <Option value="phone">Phone</Option>
+                    </Select>&nbsp;&nbsp;
+                    <Search prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
              </Col>
               </Row>  
-            <Table bordered columns={columns} dataSource={data} />
+            <Table bordered columns={columns} dataSource={data} style={{marginTop:"20px"}}/>
           </div>
         );
     }
