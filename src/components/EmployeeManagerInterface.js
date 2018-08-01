@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import Employees from './Employees';
 import Parkinglots from './Parkinglots'
 import Parkingboys from './Parkingboys'
+import Dashboards from './Dashboards'
 import Orders from './Orders'
 import { Layout, Menu, Col,Avatar,Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -52,7 +53,7 @@ export default class EmployeeManagerInterface extends Component{
                             <Route exact path="/employees" component={Employees} />
                             <Route path="/parkinglots" component={Parkinglots} />
                             <Route path="/parkingboys" component={Parkingboys} />
-                            <Route path="/dashboards" component={DashBoards} />
+                            <Route path="/dashboards" component={Dashboards} />
                             <Route path="/orders" component={Orders} />
                         </Content>
                     </Layout>
@@ -65,9 +66,3 @@ export default class EmployeeManagerInterface extends Component{
         );
     }
 }
-
-const DashBoards = () => (
-    <div>
-        <h2>DashBoards</h2>
-    </div>
-);

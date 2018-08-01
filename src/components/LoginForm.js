@@ -37,7 +37,7 @@ export default class LoginForm extends Component {
                     <div id="stars3" className=""></div>
                 </div>
                 <Col span={6} offset={9}>
-                    <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}}>
+                    <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}} className="login-box">
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                placeholder="请输入用户名"
                         ref={this.userName}/>

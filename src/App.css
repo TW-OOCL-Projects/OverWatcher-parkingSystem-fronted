@@ -23,9 +23,10 @@
 .App-intro {
   font-size: large;
 }
+.ant-row{margin-bottom: 16px}
 .ant-menu-item{text-align: left!important;}
-.ant-card-head-title{font-size: 25px!important;}
-.ant-card-body{padding: 40px!important;}
+.login-box .ant-card-head-title{font-size: 25px!important;}
+.login-box .ant-card-body{padding: 40px!important;}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
