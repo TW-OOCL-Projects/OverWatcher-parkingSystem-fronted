@@ -54,9 +54,9 @@ export default class Parkinglots extends Component{
                     {/* <Col span={8}></Col> */}
                     <Col span={16} offset={4} style={{textAlign:"right"}}>
                         <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
-                            <Option value="email">Email</Option>
                             <Option value="name">Name</Option>
                             <Option value="phone">Phone</Option>
+                            <Option value="size">Size</Option>
                         </Select>&nbsp;&nbsp;
                         <Search prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>

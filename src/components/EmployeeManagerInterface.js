@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import MenuList from './MenuList';
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import Employees from './Employees';
+import { BrowserRouter, Route } from "react-router-dom";
+import Employees from '../containers/EmployeesContainer';
 import Parkinglots from './Parkinglots'
 import Parkingboys from './Parkingboys'
 import Dashboards from './Dashboards'
 import Orders from './Orders'
-import { Layout, Menu, Col,Avatar,Icon } from 'antd';
+import { Layout, Menu, Col,Avatar } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class EmployeeManagerInterface extends Component{

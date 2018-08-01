@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Transfer } from 'antd';
 
 export default class Transfers extends React.Component {

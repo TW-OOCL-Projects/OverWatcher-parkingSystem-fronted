@@ -22,11 +22,13 @@ const columns = [{
     title: '电话号码',
     dataIndex: 'phone',
     key: 'phone',
-  },{
-    title: '职务',
-    dataIndex: 'position',
-    key: 'position',
-  },{
+  },
+  //   {
+  //   title: '职务',
+  //   dataIndex: 'role',
+  //   key: 'role',
+  // },
+    {
     title: '操作',
     dataIndex: 'command',
     key: 'command',
@@ -39,66 +41,13 @@ const columns = [{
     ),
   }];
 
-  const data = [{
-    key: '1',
-    id: '',
-    name: 'EmployeeName',
-    email: 'email',
-    phone: '13000000000',
-    position: 'manager',
-      command:''
-  },{
-    key: '1',
-    id: '',
-    name: 'EmployeeName',
-    email: 'email',
-    phone: '13000000000',
-    position: 'manager',
-      command:''
-  },{
-    key: '1',
-    id: '',
-    name: 'EmployeeName',
-    email: 'email',
-    phone: '13000000000',
-    position: '',
-      command:''
-  },{
-    key: '1',
-    id: '',
-    name: 'EmployeeName',
-    email: 'email',
-    phone: '13000000000',
-    position: '',
-      command:''
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      command:''
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      command:''
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      command:''
-  }];
-
 export default class Employees extends Component{
     render(){
+
+        const datas=(this.props.Employees).map((emp,index)=>{
+            const {id,name,email,phone,role}=emp
+            return {key:index ,id,name,email,phone,role}
+        })
       function handleChange(value) {
         console.log(`selected ${value}`);
       }
@@ -116,7 +65,7 @@ export default class Employees extends Component{
                         onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
              </Col>
               </Row>  
-            <Table bordered columns={columns} dataSource={data} style={{marginTop:"20px"}}/>
+            <Table bordered columns={columns} dataSource={datas} style={{marginTop:"20px"}}/>
           </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from "react-router-dom";
+
 export default class MenuList extends Component {
 
   render() {
@@ -10,7 +11,7 @@ export default class MenuList extends Component {
                 <Link to="/Employees"><Icon type="form" />员工管理</Link>
             </Menu.Item>
             <Menu.Item key="2" >
-                <Link to="/ParkingLots"><Icon type="form" />停车场管理</Link>
+                <Link to="/parkinglots"><Icon type="form" />停车场管理</Link>
             </Menu.Item>
             <Menu.Item key="3" >
                 <Link to="/parkingboys"><Icon type="form" />停车员管理</Link>

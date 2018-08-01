@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Divider,Button,Input, Select,Row, Col,Icon} from 'antd';
+import { Table, Divider,Button,Input, Select, Col,Icon} from 'antd';
 import Transfers from "./Transfers";
 
 const Option = Select.Option;
