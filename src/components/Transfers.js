@@ -41,6 +41,7 @@ export default class Transfers extends React.Component {
         return (
             <Transfer
                 dataSource={this.state.mockData}
+                titles={['可选区', '管理区']}
                 showSearch
                 filterOption={this.filterOption}
                 targetKeys={this.state.targetKeys}
