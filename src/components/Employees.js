@@ -28,6 +28,7 @@ const columns = [{
     key: 'position',
   },{
     title: '操作',
+    dataIndex: 'command',
     key: 'command',
     render: (text, record) => (
       <span>
@@ -39,7 +40,7 @@ const columns = [{
       </span>
     ),
   }];
-  
+
   const data = [{
     key: '1',
     id: '',
@@ -47,7 +48,7 @@ const columns = [{
     email: 'email',
     phone: '13000000000',
     position: 'manager',
-    address: 'New York No. 1 Lake Park',
+      command:''
   },{
     key: '1',
     id: '',
@@ -55,7 +56,7 @@ const columns = [{
     email: 'email',
     phone: '13000000000',
     position: 'manager',
-    address: 'New York No. 1 Lake Park',
+      command:''
   },{
     key: '1',
     id: '',
@@ -63,7 +64,7 @@ const columns = [{
     email: 'email',
     phone: '13000000000',
     position: '',
-    address: 'New York No. 1 Lake Park',
+      command:''
   },{
     key: '1',
     id: '',
@@ -71,7 +72,7 @@ const columns = [{
     email: 'email',
     phone: '13000000000',
     position: '',
-    address: 'New York No. 1 Lake Park',
+      command:''
   },{
       key: '1',
       id: '',
@@ -79,7 +80,7 @@ const columns = [{
       email: 'email',
       phone: '13000000000',
       position: '',
-      address: 'New York No. 1 Lake Park',
+      command:''
   },{
       key: '1',
       id: '',
@@ -87,7 +88,7 @@ const columns = [{
       email: 'email',
       phone: '13000000000',
       position: '',
-      address: 'New York No. 1 Lake Park',
+      command:''
   },{
       key: '1',
       id: '',
@@ -95,87 +96,7 @@ const columns = [{
       email: 'email',
       phone: '13000000000',
       position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
-  },{
-      key: '1',
-      id: '',
-      name: 'EmployeeName',
-      email: 'email',
-      phone: '13000000000',
-      position: '',
-      address: 'New York No. 1 Lake Park',
+      command:''
   }];
 
 export default class Employees extends Component{
@@ -186,8 +107,7 @@ export default class Employees extends Component{
         return(
           <div>
              <Row>
-               <Col span={4} style={{textAlign:"left"}}><Button onClick={this.handleAdd} type="primary"> 新 建 </Button></Col>
-               {/* <Col span={8}></Col> */}
+               <Col span={4} style={{textAlign:"left"}}><Button type="primary"> 新 建 </Button></Col>
                <Col span={16} offset={4} style={{textAlign:"right"}}>
                    <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="email">Email</Option>
