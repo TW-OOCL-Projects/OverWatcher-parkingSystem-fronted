@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import MenuList from './MenuList';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Employees from './Employees';
+import Parkinglots from './Parkinglots'
+import Parkingboys from './Parkingboys'
+import Orders from './Orders'
 import { Layout, Menu, Col,Avatar,Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -47,8 +50,8 @@ export default class EmployeeManagerInterface extends Component{
                         </Sider>
                         <Content style={{ padding: '0 24px', minHeight: 280 }}>
                             <Route exact path="/employees" component={Employees} />
-                            <Route path="/parkinglots" component={ParkingLots} />
-                            <Route path="/parkingboys" component={ParkingBoys} />
+                            <Route path="/parkinglots" component={Parkinglots} />
+                            <Route path="/parkingboys" component={Parkingboys} />
                             <Route path="/dashboards" component={DashBoards} />
                             <Route path="/orders" component={Orders} />
                         </Content>
@@ -62,26 +65,9 @@ export default class EmployeeManagerInterface extends Component{
         );
     }
 }
-const ParkingLots = () => (
-    <div>
-        <h2>ParkingLots</h2>
-    </div>
-);
-
-const ParkingBoys = () => (
-    <div>
-        <h2>ParkingBoys</h2>
-    </div>
-);
 
 const DashBoards = () => (
     <div>
         <h2>DashBoards</h2>
-    </div>
-);
-
-const Orders = () => (
-    <div>
-        <h2>Orders</h2>
     </div>
 );
