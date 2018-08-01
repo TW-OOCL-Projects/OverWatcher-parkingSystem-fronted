@@ -78,7 +78,7 @@ export default class Employees extends Component{
                 <Table
                     bordered
                     columns={columns}
-                    expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+                    expandedRowRender={record => <p style={{ textAlign:"center",margin: 0 }}>{record.description}</p>}
                     dataSource={data}
                 />
             </div>

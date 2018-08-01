@@ -47,6 +47,7 @@ export default class Transfers extends React.Component {
                 targetKeys={this.state.targetKeys}
                 onChange={this.handleChange}
                 render={item => item.title}
+                listStyle={{textAlign:"left",backgroundColor:"#fff"}}
             />
         );
     }
