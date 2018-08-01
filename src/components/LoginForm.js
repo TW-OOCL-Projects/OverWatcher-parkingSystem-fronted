@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Icon, Input, Button,Col,Card,message } from 'antd';
 import axios from "axios";
+import "../bubble.css";
 
 export default class LoginForm extends Component {
     constructor(props){
@@ -29,7 +30,12 @@ export default class LoginForm extends Component {
     }
     render() {
         return (
-            <div style={{margin:100}}>
+            <div>
+                <div className="search-bg hero" style={{marginBottom:100}}>
+                    <div id="stars" className=""></div>
+                    <div id="stars2" className=""></div>
+                    <div id="stars3" className=""></div>
+                </div>
                 <Col span={6} offset={9}>
                     <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}}>
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
