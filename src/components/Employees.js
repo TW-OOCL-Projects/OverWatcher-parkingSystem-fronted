@@ -23,11 +23,11 @@ const columns = [{
     dataIndex: 'phone',
     key: 'phone',
   },
-  //   {
-  //   title: '职务',
-  //   dataIndex: 'role',
-  //   key: 'role',
-  // },
+    {
+    title: '职务',
+    dataIndex: 'role',
+    key: 'role',
+  },
     {
     title: '操作',
     dataIndex: 'command',

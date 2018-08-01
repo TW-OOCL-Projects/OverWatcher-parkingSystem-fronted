@@ -9,7 +9,6 @@ import App from './App';
 
 const store = createStore(rootReducer)
 const rootEl = document.getElementById('root')
-
 parkingLotApi.init(store.dispatch,"INIT");
 
 ReactDOM.render(

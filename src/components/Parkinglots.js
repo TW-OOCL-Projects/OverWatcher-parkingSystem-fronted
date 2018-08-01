@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Table, Divider,Button,Input, Select,Row, Col,Icon} from 'antd';
+import {createStore} from "redux";
+import rootReducer from "../reducers";
+import parkingLotApi from "../API/ParkingLotApi";
+
 
 const Option = Select.Option;
 
@@ -47,6 +51,9 @@ export default class Parkinglots extends Component{
         function handleChange(value) {
             console.log(`selected ${value}`);
         }
+        const store = createStore(rootReducer)
+        console.log(this.props.match)
+        parkingLotApi.init(store.dispatch,this.props.match.path);
         return(
             <div>
                 <Row>

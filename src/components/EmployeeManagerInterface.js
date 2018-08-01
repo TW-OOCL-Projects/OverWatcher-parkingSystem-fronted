@@ -34,7 +34,7 @@ export default class EmployeeManagerInterface extends Component{
                         </Sider>
                         <Content style={{ padding: '0 24px', minHeight: 280 }}>
                             <Route exact path="/employees" component={Employees} />
-                            <Route path="/parkinglots" component={Parkinglots} />
+                            <Route path="/parkingLots" component={Parkinglots} />
                             <Route path="/parkingboys" component={Parkingboys} />
                             <Route path="/dashboards" component={Dashboards} />
                             <Route path="/orders" component={Orders} />
