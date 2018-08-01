@@ -28,9 +28,6 @@ const columns = [{
     render: (text, record) => (
         <span>
         <a  className="ant-dropdown-link">指派 </a>
-        <Divider type="vertical" />
-        <a >关闭</a>
-        <Divider type="vertical" />
         </span>
     ),
 }];

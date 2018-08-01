@@ -35,7 +35,6 @@ const columns = [{
         <a  className="ant-dropdown-link">修改 </a>
         <Divider type="vertical" />
         <a >冻结</a>
-        <Divider type="vertical" />
       </span>
     ),
 }];
@@ -77,6 +76,7 @@ export default class Employees extends Component{
                             onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
                 </Col>
                 <Table
+                    bordered
                     columns={columns}
                     expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     dataSource={data}

@@ -26,7 +26,6 @@ const columns = [{
         <a  className="ant-dropdown-link">修改 </a>
         <Divider type="vertical" />
         <a >关闭</a>
-        <Divider type="vertical" />
         </span>
     ),
 }];
