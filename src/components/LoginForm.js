@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-import { Icon, Input, Button,Col,Card } from 'antd';
+import { Icon, Input, Button,Col,Card,message } from 'antd';
 import axios from "axios";
 
 export default class LoginForm extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.userName=React.createRef();
         this.pwd=React.createRef();
 
     }
     getEmployees(e){
-        axios.post('http://localhost:9090/auth/login', {
-            "username":this.userName.current.input.value,
-            "password":this.pwd.current.input.value})
-            .then((response) => {
-                console.log(response);
-                this.props.history.push('/Employees')
-            }).catch(function (error) {
-            console.log(error);
-        });
+        let inputUser = this.userName.current.input.value;
+        let inputPwd = this.pwd.current.input.value;
+        if(inputUser+inputPwd===""){
+            message.error('用户名或密码不能为空！',1);
+        }else{
+            axios.post('http://localhost:9090/auth/login', {
+                "username":inputUser,
+                "password":inputPwd})
+                .then((response) => {
+                    console.log(response);
+                    this.props.history.push('/Employees')
+                }).catch(function (error) {
+                message.error('用户名或密码错误！',1);
+                console.log(error);
+            });
+        }
     }
     render() {
         return (
