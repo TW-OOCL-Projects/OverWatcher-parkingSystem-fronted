@@ -40,7 +40,7 @@ const data = [{
     key: '2',
     id: '',
     name: '停车场B',
-    email: '5',
+    size: '5',
 }];
 
 export default class Parkinglots extends Component{

@@ -44,6 +44,7 @@ const data = [{
     key: '1',
     id: '',
     name: 'EmployeeName',
+    email:"123@oocl.com",
     phone: '13000000000',
     status:'上班',
     description:<Transfers/>
@@ -51,6 +52,7 @@ const data = [{
     key: '2',
     id: '',
     name: 'EmployeeName',
+    email:"123@oocl.com",
     phone: '13000000000',
     status:'上班',
     description:<Transfers/>
@@ -63,19 +65,17 @@ export default class Employees extends Component{
         }
         return(
             <div>
-                <Row>
-                    <Col span={4} style={{textAlign:"left"}}><Button onClick={this.handleAdd} type="primary"> 新 建 </Button></Col>
-                    {/* <Col span={8}></Col> */}
-                    <Col span={16} offset={4} style={{textAlign:"right"}}>
-                        <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
-                            <Option value="email">Email</Option>
-                            <Option value="name">Name</Option>
-                            <Option value="phone">Phone</Option>
-                        </Select>&nbsp;&nbsp;
-                        <Search prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
-                    </Col>
-                </Row>
+                <Col span={4} style={{textAlign:"left"}}><Button type="primary"> 新 建 </Button></Col>
+                {/* <Col span={8}></Col> */}
+                <Col span={16} offset={4} style={{textAlign:"right",marginBottom:"20px"}}>
+                    <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
+                        <Option value="email">Email</Option>
+                        <Option value="name">Name</Option>
+                        <Option value="phone">Phone</Option>
+                    </Select>&nbsp;&nbsp;
+                    <Search prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
+                </Col>
                 <Table
                     columns={columns}
                     expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
