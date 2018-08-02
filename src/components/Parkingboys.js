@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Divider, Button, Input, Select, Col, Icon} from 'antd';
+import {Table, Divider, Button, Input, Select, Col, Icon, Row} from 'antd';
 import Transfers from "./Transfers";
 
 const Option = Select.Option;
@@ -52,6 +52,7 @@ export default class Employees extends Component {
         });
         return (
             <div>
+                <Row>
                 <Col span={4} style={{textAlign: "left"}}><Button type="primary"> 新 建 </Button></Col>
                 {/* <Col span={8}></Col> */}
                 <Col span={16} offset={4} style={{textAlign: "right", marginBottom: "20px"}}>
@@ -63,6 +64,7 @@ export default class Employees extends Component {
                     <Search prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
                             onSearch={value => console.log(value)} style={{width: 200}} enterButton="搜索"/>
                 </Col>
+                </Row>
                 <Table
                     bordered
                     columns={columns}
