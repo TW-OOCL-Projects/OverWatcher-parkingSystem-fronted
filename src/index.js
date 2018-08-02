@@ -7,6 +7,7 @@ import employeesApi from "./API/EmployeesApi";
 import parkingLotApi from './API/ParkingLotsApi'
 import parkingBoyApi from './API/ParkingBoysApi'
 import parkingLotDetailApi from './API/parkingLotDetailApi'
+import order from './API/orderApi'
 import './index.css';
 import App from './App';
 
@@ -16,6 +17,7 @@ employeesApi.init(store.dispatch);
 parkingLotApi.init(store.dispatch);
 parkingBoyApi.init(store.dispatch);
 parkingLotDetailApi.init(store.dispatch);
+order.init(store.dispatch);
 
 ReactDOM.render(
     <Provider store={store}>

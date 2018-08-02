@@ -12,4 +12,10 @@ const initParkingLotDetail = (parkingLotDetailsObject) => {
     return { type: 'INITPARKINGLOTDETAIL', parkingLotDetailsObject}
 };
 
-export {initEmployee,initParkingLot,initParkingBoy,initParkingLotDetail};
+const initOrderApi = (orderObject) => {
+    return { type: 'INITORDER', orderObject}
+};
+
+
+
+export {initEmployee,initParkingLot,initParkingBoy,initParkingLotDetail,initOrderApi};
