@@ -62,6 +62,11 @@ export default class Employees extends Component{
         function handleChange(value) {
             console.log(`selected ${value}`);
         }
+
+        const datas=(this.props.parkingBoys).map((boy,index)=>{
+            const {id,name,email,phone,status,role}=boy;
+            return {key:index ,id,name,email,phone,status,role}
+        });
         return(
             <div>
                 <Col span={4} style={{textAlign:"left"}}><Button type="primary"> 新 建 </Button></Col>
@@ -79,7 +84,7 @@ export default class Employees extends Component{
                     bordered
                     columns={columns}
                     expandedRowRender={record => <p style={{ textAlign:"center",margin: 0 }}>{record.description}</p>}
-                    dataSource={data}
+                    dataSource={datas}
                 />
             </div>
         );

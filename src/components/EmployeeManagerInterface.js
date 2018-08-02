@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import MenuList from './MenuList';
 import { BrowserRouter, Route } from "react-router-dom";
 import Employees from '../containers/EmployeesContainer';
-import Parkinglots from './Parkinglots'
-import Parkingboys from './Parkingboys'
-import Dashboards from './Dashboards'
+import Parkinglots from '../containers/ParkingLotsContainer'
+import Parkingboys from '../containers/ParkingBoysContainer'
+import Dashboards from '../containers/ParkingLotDetailsContainer'
 import Orders from './Orders'
 import { Layout, Menu, Col,Avatar } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;

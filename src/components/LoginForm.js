@@ -21,6 +21,11 @@ export default class LoginForm extends Component {
                 "password":inputPwd})
                 .then((response) => {
                     console.log(response);
+                    console.log("=============");
+                    // console.log(response.data.token);
+                    // console.log(response.data.roles);
+                    window.localStorage.token = response.data.token;
+                    window.localStorage.roles = response.data.roles;
                     this.props.history.push('/Employees')
                 }).catch(function (error) {
                 message.error('用户名或密码错误！',1);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table, Divider,Button,Input, Select,Row, Col,Icon} from 'antd';
 import {createStore} from "redux";
 import rootReducer from "../reducers";
-import parkingLotApi from "../API/ParkingLotApi";
+import ParkingLotsApi from "../API/ParkingLotsApi";
 
 
 const Option = Select.Option;
@@ -19,9 +19,17 @@ const columns = [{
     dataIndex: 'name',
     key: 'name',
 }, {
-    title: '大小',
+    title: '剩余车位',
     dataIndex: 'size',
     key: 'size',
+}, {
+    title: '初始车位',
+    dataIndex: 'initSize',
+    key: 'initSize',
+}, {
+    title: '状态',
+    dataIndex: 'status',
+    key: 'status',
 },{
     title: '操作',
     key: 'command',
@@ -34,26 +42,19 @@ const columns = [{
     ),
 }];
 
-const data = [{
-    key: '1',
-    id: '',
-    name: '停车场A',
-    size: '10',
-},{
-    key: '2',
-    id: '',
-    name: '停车场B',
-    size: '5',
-}];
-
 export default class Parkinglots extends Component{
     render(){
+        const datas=(this.props.Parkinglots).map((lot,index)=>{
+            const {id,name,size,status,initSize}=lot
+            return {key:index ,id,name,size,status,initSize}
+        });
+
         function handleChange(value) {
             console.log(`selected ${value}`);
         }
         const store = createStore(rootReducer)
         console.log(this.props.match)
-        parkingLotApi.init(store.dispatch,this.props.match.path);
+        ParkingLotsApi.init(store.dispatch);
         return(
             <div>
                 <Row>
@@ -69,7 +70,7 @@ export default class Parkinglots extends Component{
                                 onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
                     </Col>
                 </Row>
-                <Table bordered columns={columns} dataSource={data} style={{marginTop:"20px"}}/>
+                <Table bordered columns={columns} dataSource={datas} style={{marginTop:"20px"}}/>
             </div>
         );
     }

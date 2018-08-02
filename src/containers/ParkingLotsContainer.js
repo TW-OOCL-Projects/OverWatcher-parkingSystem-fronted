@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
-import Employees from "../components/Employees";
+import Parkinglots from "../components/Parkinglots";
 
 
 const mapStateToProps = (state, ownProps) =>{
     return {
         value: state[ownProps.index],
-        Employees:state.employees
+        Parkinglots:state.parkingLots
     }
 };
 
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch, ownProps) =>{
     return null;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Employees)
+export default connect(mapStateToProps, mapDispatchToProps)(Parkinglots)
