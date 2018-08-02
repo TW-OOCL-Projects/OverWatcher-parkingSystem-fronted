@@ -10,7 +10,7 @@ import Orders from '../containers/OrdersContainer'
 import { Layout, Menu, Col,Avatar } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
-export default class EmployeeManagerInterface extends Component{
+export default class OrdersPage extends Component{
     render(){
         return(
         <Layout>
