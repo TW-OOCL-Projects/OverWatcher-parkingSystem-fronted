@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Divider,Button,Input, Select,Row, Col,Icon} from 'antd';
-
+import { Table, Divider,Button,Input, Select,Row, Col,Icon,Modal} from 'antd';
+import WrappedNormalLoginForm from "./NewEmployee";
 const Option = Select.Option;
 
 const Search = Input.Search;
@@ -42,6 +42,27 @@ const columns = [{
   }];
 
 export default class Employees extends Component{
+    state = { visible: false }
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+
+    handleOk = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
     render(){
 
         const datas=(this.props.Employees).map((emp,index)=>{
@@ -54,7 +75,15 @@ export default class Employees extends Component{
         return(
           <div>
              <Row>
-               <Col span={4} style={{textAlign:"left"}}><Button type="primary"> 新 建 </Button></Col>
+               <Col span={4} style={{textAlign:"left"}}><Button onClick={this.showModal} type="primary"> 新 建 </Button></Col>
+                 <Modal
+                     title="新建员工"
+                     visible={this.state.visible}
+                     onOk={this.handleOk}
+                     onCancel={this.handleCancel}
+                 >
+                     <WrappedNormalLoginForm/>
+                 </Modal>
                <Col span={16} offset={4} style={{textAlign:"right"}}>
                    <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="email">Email</Option>
