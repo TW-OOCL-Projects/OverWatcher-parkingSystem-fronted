@@ -45,8 +45,11 @@ const employeesApi = {
             headers: {"Authorization": window.localStorage.token}
         }).then((response) => {
             //测试返回数据
-            // console.log(response.data);
-            dispatch(searchEmployeesByCondition(response.data));
+            this.employees = response.data.map(serviceData => {
+                const {id, name, email, phone, roleList} = serviceData;
+                return {id, name, email, phone, role: roleList[0]};
+            });
+            dispatch(searchEmployeesByCondition(this.employees));
         }).catch(function (error) {
             console.log(error);
         })
