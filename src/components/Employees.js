@@ -93,10 +93,10 @@ export default class Employees extends Component {
                                 selected:value
                             })
                         }}>
-                            <Option value="email">Email</Option>
-                            <Option value="name">Name</Option>
-                            <Option value="phone">Phone</Option>
-                            <Option value="role">Role</Option>
+                            <Option value="email">邮箱</Option>
+                            <Option value="name">姓名</Option>
+                            <Option value="phone">手机号</Option>
+                            <Option value="role">职务</Option>
                         </Select>&nbsp;&nbsp;
                         <Search prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                 onSearch={value => this.selectedByConditions(value, this.state.selected)} style={{width: 200}}
