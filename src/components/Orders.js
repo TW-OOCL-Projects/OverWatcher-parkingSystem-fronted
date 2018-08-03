@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Table, Input, Select, Col, Icon,message} from 'antd';
 import {Table, Input, Select, Col, Icon, Popconfirm, Modal,Radio} from 'antd';
 import index from "../reducers";
 
@@ -102,13 +103,13 @@ export default class Orders extends Component {
                     </p>
                 </Modal>
                 <Col span={204} style={{textAlign: "right"}}>
-                    <Select defaultValue="Type" style={{width: 120}} onChange={value=>selected=value}>
-                        <Option value="type">Type</Option>
-                        <Option value="status">Status</Option>
-                        <Option value="id">id</Option>
+                    <Select defaultValue="类型" style={{width: 120}} onChange={value=>{this.setState({selected:value})}}>
+                        <Option value="type">类型</Option>
+                        <Option value="status">状态</Option>
+                        {/*<Option value="id">Id</Option>*/}
                     </Select>&nbsp;&nbsp;
                     <Search prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                            onSearch={value => this.selectedByConditions(value,selected)} style={{width: 200}} enterButton="搜索"/>
+                            onSearch={value => this.selectedByConditions(value,this.state.selected)} style={{width: 200}} enterButton="搜索"/>
                 </Col>
                 <Table bordered columns={columns} dataSource={datas} style={{marginTop: "20px"}}/>
             </div>
@@ -117,7 +118,7 @@ export default class Orders extends Component {
 
     selectedByConditions(value, selected) {
         if(value===""){
-            alert("请输入文本");
+            message.error('请输入搜索条件！',2);
         }else{
             this.props.selectedByValue(value,selected);
         }

@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import Employees from "../components/Employees";
+import EmployeesApi from "../API/EmployeesApi"
 
 
 const mapStateToProps = (state, ownProps) =>{
@@ -10,7 +11,11 @@ const mapStateToProps = (state, ownProps) =>{
 };
 
 const mapDispatchToProps = (dispatch, ownProps) =>{
-    return null;
+    return {
+        selectedEmployeeByValue: (value,selected) => {
+            EmployeesApi.findEmployeesByConditions(value,selected,dispatch);
+        }
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Employees)

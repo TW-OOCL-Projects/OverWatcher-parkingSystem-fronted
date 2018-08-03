@@ -20,6 +20,10 @@ const searchOrdersByCondition = (orderObject) => {
     return {type: 'SELECT_ORDERS_BY_CONDITION', orderObject}
 };
 
+const searchEmployeesByCondition = (employeesObject) => {
+    return {type: 'SELECT_EMPLOYEES_BY_CONDITION', employeesObject}
+};
+export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition};
 const assignParkingboy = (boysObject) => {
     return {type: 'ASSIGN', boysObject}
 };
