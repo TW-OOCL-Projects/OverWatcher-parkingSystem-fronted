@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
-import Parkinglots from "../components/Parkinglots";
+import DashBoard from "../components/Dashboards"
 
 
 const mapStateToProps = (state, ownProps) =>{
     return {
         value: state[ownProps.index],
-        Parkinglots:state.parkingLots
+        DashBoardsparkingLots:state.DashBoardsparkingLots
     }
 };
 
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch, ownProps) =>{
     return null;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Parkinglots)
+export default connect(mapStateToProps, mapDispatchToProps)(DashBoard)

@@ -23,4 +23,7 @@ const searchOrdersByCondition = (orderObject) => {
 const searchEmployeesByCondition = (employeesObject) => {
     return {type: 'SELECT_EMPLOYEES_BY_CONDITION', employeesObject}
 };
-export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition};
+const initDashBoardsParkingLot = (DashBoardsparkingLotsObject) => {
+    return {type: 'INITDASHBOARDSPARKINGBOY', DashBoardsparkingLotsObject}
+};
+export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,initDashBoardsParkingLot};
