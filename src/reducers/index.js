@@ -30,6 +30,11 @@ export default  (state={employees:[],parkingLots:[],parkingBoys:[],parkingLotDet
             newState.orders = [...action.orderObject];
             return newState
         }
+        case 'SELECT_EMPLOYEES_BY_CONDITION': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.employees = [...action.employeesObject];
+            return newState
+        }
         default:
             return state
     }
