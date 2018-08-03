@@ -20,4 +20,8 @@ const searchOrdersByCondition = (orderObject) => {
     return {type: 'SELECT_ORDERS_BY_CONDITION', orderObject}
 };
 
-export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition};
+const assignParkingboy = (boysObject) => {
+    return {type: 'ASSIGN', boysObject}
+};
+
+export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,assignParkingboy};

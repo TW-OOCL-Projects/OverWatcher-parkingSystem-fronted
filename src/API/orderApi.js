@@ -1,4 +1,4 @@
-import {initOrderApi, searchOrdersByCondition} from "../actions";
+import {initOrderApi, searchOrdersByCondition,assignParkingboy} from "../actions";
 import axios from "axios";
 
 const ordersApi = {
@@ -36,6 +36,15 @@ const ordersApi = {
         }).then((response) => {
             console.log(response.data);
             dispatch(searchOrdersByCondition(response.data));
+        }).catch(function (error) {
+            console.log(error);
+        })
+    },
+    assigned(id,dispatch) {
+        axios.get(`http://localhost:9090/employees/onWork`, {
+            headers: {"Authorization": window.localStorage.token}
+        }).then((response) => {
+            dispatch(assignParkingboy(response.data));
         }).catch(function (error) {
             console.log(error);
         })
