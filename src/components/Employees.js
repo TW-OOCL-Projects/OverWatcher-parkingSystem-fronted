@@ -54,8 +54,13 @@ export default class Employees extends Component {
         });
     };
 
-    handleOk = (e) => {
-        console.log(e);
+    // handleOk = (e) => {
+    //     console.log(e);
+    //     this.setState({
+    //         visible: false,
+    //     });
+    // };
+    hideModal = () =>{
         this.setState({
             visible: false,
         });
@@ -84,8 +89,9 @@ export default class Employees extends Component {
                         visible={this.state.visible}
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
+                        footer={null}
                     >
-                        <WrappedNormalLoginForm/>
+                        <WrappedNormalLoginForm hideModal={this.hideModal}/>
                     </Modal>
                     <Col span={16} offset={4} style={{textAlign: "right"}}>
                         <Select defaultValue={this.state.selected} style={{width: 120}} onChange={value => {
