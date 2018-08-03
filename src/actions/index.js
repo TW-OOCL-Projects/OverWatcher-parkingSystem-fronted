@@ -26,5 +26,8 @@ const searchEmployeesByCondition = (employeesObject) => {
 const assignParkingboy = (boysObject) => {
     return {type: 'ASSIGN', boysObject}
 };
+const scramble=(orderObject)=>{
+    return {type:'SCRAMBLE',orderObject}
+}
 
-export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,assignParkingboy};
+export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,assignParkingboy,scramble};

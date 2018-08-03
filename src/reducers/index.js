@@ -40,6 +40,15 @@ export default  (state={employees:[],parkingLots:[],parkingBoys:[],parkingLotDet
             newState.employees = [...action.employeesObject];
             return newState
         }
+        case 'SCRAMBLE': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.orders.forEach(order=>{
+                if(order.id==action.orderObject.id){
+                    order.status=action.orderObject.status
+                }
+            })
+            return newState
+        }
         default:
             return state
     }

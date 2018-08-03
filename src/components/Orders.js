@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {Table, Input, Select, Col, Icon, Popconfirm, Modal,Radio,message} from 'antd';
 import index from "../reducers";
-
+import orderApi from "../API/orderApi"
 const Option = Select.Option;
 const Search = Input.Search;
 const RadioGroup = Radio.Group;
 
 export default class Orders extends Component {
-    state = { visible: false,selected:"type"}
+    state = { visible: false,selected:"type",orderId:0,parkingBoyId: 0}
     constructor(props) {
         super(props);
         this.columns = [{
@@ -45,7 +45,9 @@ export default class Orders extends Component {
         console.log(this.datas);
     }
     handleOk = (e) => {
-        console.log(e);
+        console.log(this.state.parkingBoyId)
+        console.log(e)
+        this.props.assignfinish(this.state.orderId,this.state.parkingBoyId)
         this.setState({
             visible: false,
         });
@@ -59,15 +61,15 @@ export default class Orders extends Component {
     assign = (id) => {
         this.setState({
             visible: true,
+            orderId:id
         });
         const datas = this.datas.dataSource;
         this.props.handle(id);
     }
-
     onChange = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value: e.target.value,
+            parkingBoyId: e.target.value
         });
     }
     render() {
@@ -94,7 +96,7 @@ export default class Orders extends Component {
                 <Modal
                     title="停车员列表"
                     visible={this.state.visible}
-                    onOk={this.handleOk}
+                    onOk={(e)=>{this.handleOk(e)}}
                     onCancel={this.handleCancel}
                 >
                     <p>
@@ -116,7 +118,6 @@ export default class Orders extends Component {
             </div>
         );
     }
-
     selectedByConditions(value, selected) {
         if(value===""){
             message.error('请输入搜索条件！',2);

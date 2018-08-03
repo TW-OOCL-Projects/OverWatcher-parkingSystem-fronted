@@ -1,4 +1,4 @@
-import {initOrderApi, searchOrdersByCondition,assignParkingboy} from "../actions";
+import {initOrderApi, searchOrdersByCondition,assignParkingboy,scramble} from "../actions";
 import axios from "axios";
 
 const ordersApi = {
@@ -36,6 +36,26 @@ const ordersApi = {
         }).catch(function (error) {
             console.log(error);
         })
+    },
+    qiangdan(dispatch, orderId, boyId) {
+        axios
+            .put(
+                `http://localhost:9090/orders/${orderId}/parkingBoy/${boyId}`,
+                {
+                    headers: {"Authorization": window.localStorage.token},
+                }
+            )
+            .then(response => {
+                console.log(
+                    "点击一个订单进行抢单的请求结果\n----------------------"
+                );
+                console.log(response);
+                const order = response.data;
+                dispatch(scramble(order));
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     },
     init(dispatch) {
         this.updateServerData(dispatch, window.localStorage.token)

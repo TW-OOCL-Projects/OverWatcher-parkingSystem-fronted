@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         handle:(id)=>{
             orderApi.assigned(id,dispatch);
+        },
+        assignfinish:(orderId,boyId)=>{
+            orderApi.qiangdan(dispatch,orderId,boyId);
         }
     }
 };
