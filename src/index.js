@@ -6,7 +6,7 @@ import {Provider} from "react-redux"
 import employeesApi from "./API/EmployeesApi";
 import parkingLotApi from './API/ParkingLotsApi'
 import parkingBoyApi from './API/ParkingBoysApi'
-import parkingLotDetailApi from './API/parkingLotDetailApi'
+// import parkingLotDetailApi from './API/parkingLotDetailApi'
 import order from './API/orderApi'
 import './index.css';
 import App from './App';
@@ -16,7 +16,7 @@ const rootEl = document.getElementById('root');
 employeesApi.init(store.dispatch);
 parkingLotApi.init(store.dispatch);
 parkingBoyApi.init(store.dispatch);
-parkingLotDetailApi.init(store.dispatch);
+// parkingLotDetailApi.init(store.dispatch);
 order.init(store.dispatch);
 
 ReactDOM.render(
