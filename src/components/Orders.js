@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Input, Select, Col, Icon,message} from 'antd';
-import {Table, Input, Select, Col, Icon, Popconfirm, Modal,Radio} from 'antd';
+import {Table, Input, Select, Col, Icon, Popconfirm, Modal,Radio,message} from 'antd';
 import index from "../reducers";
 
 const Option = Select.Option;
@@ -8,7 +7,7 @@ const Search = Input.Search;
 const RadioGroup = Radio.Group;
 
 export default class Orders extends Component {
-    state = { visible: false}
+    state = { visible: false,selected:"type"}
     constructor(props) {
         super(props);
         this.columns = [{
@@ -72,6 +71,10 @@ export default class Orders extends Component {
         });
     }
     render() {
+        const datas = (this.props.orders).map((order, index) => {
+            const {id, carId, type, status} = order;
+            return {key: index, id, carId, type, status, command: status}
+        });
         const list = (this.props.list).map((parkingBoy,index)=>{
             const {id,name} = parkingBoy;
             return {key:index,id,name}
@@ -85,9 +88,7 @@ export default class Orders extends Component {
             return <Radio style={radioStyle} value={boy.id}>{boy.name}</Radio>
             }
         )
-        const datas= this.datas.dataSource;
         const columns = this.columns;
-        let selected = "type";
         return (
             <div>
                 <Modal

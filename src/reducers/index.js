@@ -1,4 +1,4 @@
-export default  (state={employees:[],parkingLots:[],parkingBoys:[],parkingLotDetails:[],orders:[]}, action) => {
+export default  (state={employees:[],parkingLots:[],parkingBoys:[],parkingLotDetails:[],orders:[],boys:[]}, action) => {
     switch (action.type) {
         case 'INITEMPLOYEE': {
             let newState = JSON.parse(JSON.stringify(state));
