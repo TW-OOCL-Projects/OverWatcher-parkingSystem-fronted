@@ -1,4 +1,4 @@
-import {initOrderApi, searchOrdersByCondition} from "../actions";
+import {initOrderApi, searchOrdersByCondition,assignParkingboy} from "../actions";
 import axios from "axios";
 
 const ordersApi = {
@@ -15,27 +15,24 @@ const ordersApi = {
     },
 
     findOrdersByConditions(value, selected, dispatch) {
-
-        let url = "http://localhost:9090/orders";
-        if (selected === "status") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
-        } else if (selected === "type") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
-        } else if (selected === "id") {
-            url += "/" + value;
-            console.log(url);
-        }
-        // else if(selected === "carId"){
-        //     url += "?" + selected + "=" + value;
-        // }
-
-        axios.get(url, {
-            headers: {"Authorization": window.localStorage.token}
+        axios.get("http://localhost:9090/orders/condition", {
+            headers: {"Authorization": window.localStorage.token},
+            params:{
+                condition:selected,
+                value:value
+            }
         }).then((response) => {
             console.log(response.data);
             dispatch(searchOrdersByCondition(response.data));
+        }).catch(function (error) {
+            console.log(error);
+        })
+    },
+    assigned(id,dispatch) {
+        axios.get(`http://localhost:9090/employees/onWork`, {
+            headers: {"Authorization": window.localStorage.token}
+        }).then((response) => {
+            dispatch(assignParkingboy(response.data));
         }).catch(function (error) {
             console.log(error);
         })
