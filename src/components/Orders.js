@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Table, Input, Select, Col, Icon} from 'antd';
 
 const Option = Select.Option;
-
 const Search = Input.Search;
 
 const columns = [{
@@ -39,17 +38,15 @@ const columns = [{
 
 export default class Orders extends Component {
     render() {
-
-
         const datas = (this.props.orders).map((order, index) => {
             const {id, carId, type, status} = order;
             return {key: index, id, carId, type, status, command: status}
         });
-        let selected = "name";
+        let selected = "Type";
         return (
             <div>
                 <Col span={204} style={{textAlign: "right"}}>
-                    <Select defaultValue="name" style={{width: 120}} onChange={value=>selected=value}>
+                    <Select defaultValue="Type" style={{width: 120}} onChange={value=>selected=value}>
                         <Option value="type">Type</Option>
                         <Option value="status">Status</Option>
                         <Option value="id">id</Option>

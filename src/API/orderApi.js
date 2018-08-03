@@ -18,12 +18,12 @@ const ordersApi = {
 
         let url = "http://localhost:9090/orders";
         if (selected === "status") {
-            url += "?" + selected + "=" + value;
+            url += "/" + selected + "?" + selected + "=" + value;
             console.log(url);
-        }else if(selected === "type"){
-            url += "?" + selected + "=" + value;
+        } else if (selected === "type") {
+            url += "/" + selected + "?" + selected + "=" + value;
             console.log(url);
-        }else if(selected ==="id"){
+        } else if (selected === "id") {
             url += "/" + value;
             console.log(url);
         }
