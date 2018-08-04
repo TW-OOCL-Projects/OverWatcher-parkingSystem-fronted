@@ -41,11 +41,11 @@ export default class Orders extends Component {
             const {id, carId, type, status} = order;
             return {key: index, id, carId, type, status, command: status}
         })};
-        console.log(this.datas);
+        // console.log(this.datas);
     }
     handleOk = (e) => {
         console.log(this.state.parkingBoyId);
-        console.log(e);
+        // console.log(e);
         this.props.assignfinish(this.state.orderId,this.state.parkingBoyId);
         this.setState({
             visible: false,
@@ -65,7 +65,7 @@ export default class Orders extends Component {
         this.props.handle(id);
     };
     onChange = (e) => {
-        console.log('radio checked', e.target.value);
+        // console.log('radio checked', e.target.value);
         this.setState({
             parkingBoyId: e.target.value
         });
