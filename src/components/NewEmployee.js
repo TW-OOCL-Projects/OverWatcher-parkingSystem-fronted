@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Input,Button } from 'antd';
+import { Form, Input,Button,Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
+
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -48,7 +50,11 @@ class NormalLoginForm extends React.Component {
                             required: true, message: '职务不能为空!',
                         }],
                     })(
-                        <Input type="text" placeholder="请输入职务" />
+                        /*<Input type="text" placeholder="请输入职务" />*/
+                        <Select defaultValue="employee">
+                            <Option value="employee">员工</Option>
+                            <Option value="manager">经理</Option>
+                        </Select>
                     )}
                 </FormItem>
                 <FormItem

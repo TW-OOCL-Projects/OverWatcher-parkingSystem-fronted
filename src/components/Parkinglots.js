@@ -4,6 +4,7 @@ import {createStore} from "redux";
 import rootReducer from "../reducers";
 import ParkingLotsApi from "../API/ParkingLotsApi";
 import WrappedParkingLotForm from '../containers/NewParkingLotContainer'
+import {message} from "antd/lib/index";
 
 const Option = Select.Option;
 
@@ -22,7 +23,7 @@ export default class Parkinglots extends Component{
             key: 'id',
             render: text => <a>{text}</a>,
         }, {
-            title: '名称',
+            title: '姓名',
             dataIndex: 'name',
             key: 'name',
         }, {
@@ -40,13 +41,16 @@ export default class Parkinglots extends Component{
         }, {
             title: '操作',
             key: 'command',
-            render: (text, record) => (
-                <span>
-                    <a className="ant-dropdown-link">修改 </a>
-                    <Divider type="vertical"/>
-                    <a onClick={() =>this.update(record.id, record.status)}>{record.status=='开放' ? '关闭' : '开放'}</a>
-                </span>
-            ),
+            render: (text, record) => {
+                if(record.size===record.initSize){
+                    return(
+                        <span>
+                            <a className="ant-dropdown-link">修改 </a>
+                            <Divider type="vertical"/>
+                            <a onClick={() =>this.update(record.id, record.status)}>{record.status=="开放" ? '关闭' : '开放'}</a>
+                        </span>
+                    )}
+            },
         }];
     }
 
@@ -132,7 +136,7 @@ export default class Parkinglots extends Component{
 
     selectedByConditions(value,selected){
         if (value === "") {
-            alert("请输入文本");
+            message.error("请输入搜索条件！",2);
         } else {
             this.props.selectedParkingLotsByValue(value, selected);
         }

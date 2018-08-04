@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal} from 'antd';
 import WrappedNormalLoginForm from "../containers/NewEmployeeContainer";
+import {message} from "antd/lib/index";
 
 const Option = Select.Option;
 
@@ -33,14 +34,17 @@ const columns = [{
         title: '操作',
         dataIndex: 'command',
         key: 'command',
-        render: (text, record) => (
+        render: (text, record) => {
+            if(record.role!=="管理员"){
+                return(
                     <span>
-                        <a className="ant-dropdown-link">修改 </a>
-                        <Divider type="vertical"/>
-                        <a >冻结</a>
-                    </span>
-                )
-            }];
+                    <a className="ant-dropdown-link">修改 </a>
+                    <Divider type="vertical"/>
+                    <a>冻结</a>
+                </span>
+                )}
+            }
+    }];
 
 export default class Employees extends Component {
     state = {
@@ -54,12 +58,6 @@ export default class Employees extends Component {
         });
     };
 
-    // handleOk = (e) => {
-    //     console.log(e);
-    //     this.setState({
-    //         visible: false,
-    //     });
-    // };
     hideModal = () =>{
         this.setState({
             visible: false,
@@ -115,7 +113,7 @@ export default class Employees extends Component {
 
     selectedByConditions(value, selected) {
         if (value === "") {
-            alert("请输入文本");
+            message.error("请输入搜索条件！",2);
         } else {
             this.props.selectedEmployeeByValue(value, selected);
         }
