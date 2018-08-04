@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { Icon, Input, Button,Col,Card,message } from 'antd';
 import axios from "axios";
 import "../bubble.css";
+import { createStore } from 'redux'
+import rootReducer from "../reducers";
+import employeesApi from "../API/EmployeesApi";
+import parkingLotApi from '../API/ParkingLotsApi'
+import DashBoardsApi from '../API/DashBoardsApi'
+import parkingBoyApi from '../API/ParkingBoysApi'
+import order from '../API/orderApi'
+import store from '../index'
 
 export default class LoginForm extends Component {
     constructor(props){
@@ -20,12 +28,13 @@ export default class LoginForm extends Component {
                 "username":inputUser,
                 "password":inputPwd})
                 .then((response) => {
-                    console.log(response);
-                    console.log("=============");
-                    // console.log(response.data.token);
-                    // console.log(response.data.roles);
                     window.localStorage.token = response.data.token;
                     window.localStorage.roles = response.data.roles;
+                    employeesApi.init(store.dispatch);
+                    parkingLotApi.init(store.dispatch);
+                    parkingBoyApi.init(store.dispatch);
+                    DashBoardsApi.init(store.dispatch);
+                    order.init(store.dispatch);
                     this.props.history.push('/Employees')
                 }).catch(function (error) {
                 message.error('用户名或密码错误！',1);
@@ -37,9 +46,9 @@ export default class LoginForm extends Component {
         return (
             <div>
                 <div className="search-bg hero" style={{marginBottom:100}}>
-                    <div id="stars" className=""></div>
-                    <div id="stars2" className=""></div>
-                    <div id="stars3" className=""></div>
+                    <div id="stars" className=""/>
+                    <div id="stars2" className=""/>
+                    <div id="stars3" className=""/>
                 </div>
                 <Col span={6} offset={9}>
                     <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}} className="login-box">

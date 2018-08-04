@@ -2,13 +2,13 @@ import {initEmployee,searchEmployeesByCondition,addEmployee} from "../actions";
 import axios from "axios";
 import {message} from "antd/lib/index";
 
+let url = `http://localhost:9090/employees`;
 const employeesApi = {
 
     employees: [],
-    updateServerData(dispatch, path, token) {
-        console.log(path);
-        axios.get(`http://localhost:9090/employees`, {
-            headers: {"Authorization": token}
+    init(dispatch) {
+        axios.get(url, {
+            headers: {"Authorization": window.localStorage.token}
         }).then((response) => {
             // console.log(response);
             this.employees = response.data.map(serviceData => {
@@ -20,28 +20,25 @@ const employeesApi = {
             console.log(error);
         });
     },
-    init(dispatch) {
-        this.updateServerData(dispatch, window.localStorage.token)
-    },
 
     findEmployeesByConditions(value, selected, dispatch) {
-        let url = "http://localhost:9090/employees";
+        let url1 = "http://localhost:9090/employees";
         if (selected === "name") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
+            url1 += "/" + selected + "?" + selected + "=" + value;
+            console.log(url1);
         } else if (selected === "email") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
+            url1 += "/" + selected + "?" + selected + "=" + value;
+            console.log(url1);
         } else if (selected === "phone") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
+            url1 += "/" + selected + "?" + selected + "=" + value;
+            console.log(url1);
         }
         else if (selected === "role") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
+            url1 += "/" + selected + "?" + selected + "=" + value;
+            console.log(url1);
         }
 
-        axios.get(url, {
+        axios.get(url1, {
             headers: {"Authorization": window.localStorage.token}
         }).then((response) => {
             //测试返回数据
