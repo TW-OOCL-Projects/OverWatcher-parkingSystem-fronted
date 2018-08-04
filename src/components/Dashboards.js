@@ -7,7 +7,7 @@ import DashBoardsApi from "../API/DashBoardsApi";
 export default class Dashboards extends Component{
     render(){
         const datas=(this.props.DashBoardsparkingLots).map((lot,index)=>{
-            const {parkingLotName,size,initSize,parkingBoyName}=lot
+            const {parkingLotName,size,initSize,parkingBoyName}=lot;
             return {key:index ,parkingLotName,size,initSize,parkingBoyName}
         });
 
@@ -19,23 +19,23 @@ export default class Dashboards extends Component{
         return(
             <div>
                 <Row gutter={16}>
-                {datas.map(item =>
-                    <Col span={8}>
-                        <Card title={item.parkingLotName}>
-                            <Row>
-                                <Col span={12}>
-                                    <Progress
-                                        type="dashboard"
-                                        format={() => `${item.size}/${item.initSize}`}
-                                        percent={(item.size / item.initSize) * 100}/>
-                                </Col>
-                                <Col span={12}>
-                                    停车员：{item.parkingBoyName}
-                                </Col>
-                            </Row>
-                            <Col span={12}><b><br/>停车情况</b></Col>
-                        </Card>
-                    </Col>)}
+                    {datas.map(item =>
+                        <Col span={8}>
+                            <Card title={item.parkingLotName}>
+                                <Row>
+                                    <Col span={12}>
+                                        <Progress
+                                            type="dashboard"
+                                            format={() => `${item.size}/${item.initSize}`}
+                                            percent={(item.size / item.initSize) * 100}/>
+                                    </Col>
+                                    <Col span={12}>
+                                        停车员：{item.parkingBoyName}
+                                    </Col>
+                                </Row>
+                                <Col span={12}><b><br/>停车情况</b></Col>
+                            </Card>
+                        </Col>)}
                 </Row>
             </div>
         );
