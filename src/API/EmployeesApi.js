@@ -52,8 +52,10 @@ const employeesApi = {
         })
     },
     addNewEmployee(values, dispatch){
+
         axios
             .post("http://localhost:9090/employees", {
+                // headers: {"Authorization": window.localStorage.token},
                 name:values.userName,
                 roleList:[{name:values.role}],
                 email:values.email,
@@ -62,13 +64,13 @@ const employeesApi = {
             .then(res => {
                 console.log(res);
                 dispatch(addEmployee(values));
-                this.updateServerData(dispatch, window.localStorage.token)
+                this.init(dispatch)
                 message.success('员工新建成功！',2);
 
             })
             .catch(function(error) {
                 console.log(error);
-                message.success('员工新建失败！',2);
+                message.error('员工新建失败！',2);
             });
     }
 };
