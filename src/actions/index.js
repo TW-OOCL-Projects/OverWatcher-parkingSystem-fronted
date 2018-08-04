@@ -23,6 +23,7 @@ const searchOrdersByCondition = (orderObject) => {
 const searchEmployeesByCondition = (employeesObject) => {
     return {type: 'SELECT_EMPLOYEES_BY_CONDITION', employeesObject}
 };
+
 const searchParkingLotsByCondition = (parkingLotsObject) => {
     return {type: 'SELECT_PARKINGLOTS_BY_CONDITION', parkingLotsObject}
 };
@@ -32,6 +33,20 @@ const assignParkingboy = (boysObject) => {
 };
 const scramble=(orderObject)=>{
     return {type:'SCRAMBLE',orderObject}
-}
+};
 
-export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,assignParkingboy,scramble,searchParkingLotsByCondition};
+const searchParkingBoysByCondition=(parkingBoysObject)=>{
+    return {type:'SELECT_PARKINGBOYS_BY_CONDITION',parkingBoysObject}
+};
+
+const initDashBoardsParkingLot = (DashBoardsparkingLotsObject) => {
+    return {type: 'INITDASHBOARDSPARKINGBOY', DashBoardsparkingLotsObject}
+};
+export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail,
+    initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
+    initDashBoardsParkingLot,searchParkingLotsByCondition,
+    assignParkingboy,
+    scramble,
+    searchParkingBoysByCondition
+};
+

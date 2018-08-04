@@ -1,4 +1,4 @@
-export default  (state={employees:[],parkingLots:[],parkingBoys:[],parkingLotDetails:[],orders:[],boys:[]}, action) => {
+export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],parkingLotDetails:[],orders:[],boys:[]}, action) => {
     switch (action.type) {
         case 'INITEMPLOYEE': {
             let newState = JSON.parse(JSON.stringify(state));
@@ -40,18 +40,29 @@ export default  (state={employees:[],parkingLots:[],parkingBoys:[],parkingLotDet
             newState.employees = [...action.employeesObject];
             return newState
         }
+
         case 'SCRAMBLE': {
             let newState = JSON.parse(JSON.stringify(state));
             newState.orders.forEach(order=>{
-                if(order.id==action.orderObject.id){
+                if(order.id===action.orderObject.id){
                     order.status=action.orderObject.status
                 }
-            })
+            });
             return newState
         }
         case 'SELECT_PARKINGLOTS_BY_CONDITION': {
             let newState = JSON.parse(JSON.stringify(state));
             newState.parkingLots = [...action.parkingLotsObject];
+            return newState
+        }
+        case 'SELECT_PARKINGBOYS_BY_CONDITION': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.parkingBoys = [...action.parkingBoysObject];
+            return newState
+        }
+        case 'INITDASHBOARDSPARKINGBOY': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.DashBoardsparkingLots = [...action.DashBoardsparkingLotsObject];
             return newState
         }
         default:

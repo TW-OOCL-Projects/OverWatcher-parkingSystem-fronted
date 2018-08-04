@@ -4,8 +4,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Employees from '../containers/EmployeesContainer';
 import Parkinglots from '../containers/ParkingLotsContainer'
 import Parkingboys from '../containers/ParkingBoysContainer'
-// import Dashboards from '../containers/ParkingLotDetailsContainer'
-import Dashboards from '../components/Dashboards'
+import Dashboards from '../containers/DashBoardsContainer'
+// import Dashboards from '../components/Dashboards'
 import Orders from '../containers/OrdersContainer'
 import { Layout, Menu, Col,Avatar } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
