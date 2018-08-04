@@ -72,6 +72,22 @@ const employeesApi = {
                 console.log(error);
                 message.error('员工新建失败！',2);
             });
+    },
+    frozenOrUnfrozen(userId,status,dispatch){
+        axios
+            .put("http://localhost:9090/employees", {
+                 headers: {"Authorization": window.localStorage.token},
+              })
+            .then(respones => {
+                console.log("冻结或激活用户\n-----------------");
+                console.log(respones);
+                // dispatch()
+
+            })
+            .catch(function(error) {
+                console.log(error);
+                message.error('员工新建失败！',2);
+            });
     }
 };
 

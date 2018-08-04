@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch, ownProps) =>{
     return {
         selectedEmployeeByValue: (value,selected) => {
             EmployeesApi.findEmployeesByConditions(value,selected,dispatch);
+        },
+        frozenOrUnfrozen:(userId,status)=>{
+            EmployeesApi.frozenOrUnfrozen(userId,status,dispatch)
         }
     }
 };

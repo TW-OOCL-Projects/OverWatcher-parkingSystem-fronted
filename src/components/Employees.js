@@ -6,43 +6,54 @@ const Option = Select.Option;
 
 const Search = Input.Search;
 
-const columns = [{
-    title: 'Id',
-    dataIndex: 'id',
-    key: 'id',
-    render: text => <a>{text}</a>,
-}, {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-}, {
-    title: 'Email',
-    dataIndex: 'email',
-    key: 'email',
-}, {
-    title: '电话号码',
-    dataIndex: 'phone',
-    key: 'phone',
-},
-    {
-        title: '职务',
-        dataIndex: 'role',
-        key: 'role',
-    },
-    {
-        title: '操作',
-        dataIndex: 'command',
-        key: 'command',
-        render: (text, record) => (
-                    <span>
-                        <a className="ant-dropdown-link">修改 </a>
-                        <Divider type="vertical"/>
-                        <a >冻结</a>
-                    </span>
-                )
-            }];
+
 
 export default class Employees extends Component {
+    constructor(props){
+        super(props)
+    }
+    columns = [{
+        title: 'Id',
+        dataIndex: 'id',
+        key: 'id',
+        render: text => <a>{text}</a>,
+    }, {
+        title: '姓名',
+        dataIndex: 'name',
+        key: 'name',
+    }, {
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
+    }, {
+        title: '电话号码',
+        dataIndex: 'phone',
+        key: 'phone',
+    },
+        {
+            title: '职务',
+            dataIndex: 'role',
+            key: 'role',
+        },
+        {
+            title: '操作',
+            dataIndex: 'command',
+            key: 'command',
+            render: (text, record) => (
+                <span>
+                        <a className="ant-dropdown-link">修改 </a>
+                        <Divider type="vertical"/>
+                        <a onClick={()=>{this.frozen(record)}}>冻结</a>
+                    </span>
+            )
+        }];
+
+    frozen=(record)=>{
+        console.log("员工表格\n---------------------------")
+        console.log(record)
+        this.props.frozenOrUnfrozen(record.id,record.status)
+    }
+
     state = {
         visible: false,
         selected: "name",
@@ -108,7 +119,7 @@ export default class Employees extends Component {
                                 enterButton="搜索"/>
                     </Col>
                 </Row>
-                <Table bordered columns={columns} dataSource={datas} style={{marginTop: "20px"}}/>
+                <Table bordered columns={this.columns} dataSource={datas} style={{marginTop: "20px"}}/>
             </div>
         );
     }

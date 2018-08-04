@@ -12,7 +12,6 @@ export default class MenuList extends Component {
     constructor(props) {
         super(props);
     }
-
     reflushEmployee=()=>{
         employeesApi.init(store.dispatch);
     };
@@ -28,7 +27,6 @@ export default class MenuList extends Component {
     reflushOrder=()=>{
         order.init(store.dispatch);
     };
-
     render() {
         return (
             <Menu defaultSelectedKeys={['1']} >

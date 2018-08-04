@@ -26,8 +26,8 @@ export default class Dashboards extends Component{
                                     <Col span={12}>
                                         <Progress
                                             type="dashboard"
-                                            format={() => `${item.size}/${item.initSize}`}
-                                            percent={(item.size / item.initSize) * 100}/>
+                                            format={() => `${item.initSize-item.size}/${item.initSize}`}
+                                            percent={((item.initSize-item.size) / item.initSize) * 100}/>
                                     </Col>
                                     <Col span={12}>
                                         停车员：{item.parkingBoyName}
