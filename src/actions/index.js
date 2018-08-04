@@ -8,10 +8,6 @@ const initParkingBoy = (parkingBoysObject) => {
     return {type: 'INITPARKINGBOY', parkingBoysObject}
 };
 
-const initParkingLotDetail = (parkingLotDetailsObject) => {
-    return {type: 'INITPARKINGLOTDETAIL', parkingLotDetailsObject}
-};
-
 const initOrderApi = (orderObject) => {
     return {type: 'INITORDER', orderObject}
 };
@@ -45,7 +41,7 @@ const initDashBoardsParkingLot = (DashBoardsparkingLotsObject) => {
 const addEmployee=(newEmployeeObject)=>{
     return{type:'ADD_EMPLOYEE',newEmployeeObject}
 };
-export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail,
+export {initEmployee, initParkingLot, initParkingBoy,
     initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
     initDashBoardsParkingLot,searchParkingLotsByCondition,
     assignParkingboy,

@@ -15,11 +15,6 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
             newState.parkingBoys = [...action.parkingBoysObject];
             return newState
         }
-        case 'INITPARKINGLOTDETAIL': {
-            let newState = JSON.parse(JSON.stringify(state));
-            newState.parkingLotDetails = [...action.parkingLotDetailsObject];
-            return newState
-        }
         case 'INITORDER': {
             let newState = JSON.parse(JSON.stringify(state));
             newState.orders = [...action.orderObject];
