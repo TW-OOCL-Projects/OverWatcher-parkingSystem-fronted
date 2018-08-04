@@ -32,7 +32,7 @@ export default class Orders extends Component {
             render: (text, record) => {
                 if (record.command === "无人处理") {
                     return (
-                        <button onClick={() => this.assign(record.id)}>指派</button>
+                        <a onClick={() => this.assign(record.id)}>指派</a>
                     )
                 }
             },
@@ -62,7 +62,6 @@ export default class Orders extends Component {
             visible: true,
             orderId:id
         });
-        const datas = this.datas.dataSource;
         this.props.handle(id);
     };
     onChange = (e) => {

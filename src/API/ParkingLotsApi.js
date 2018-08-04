@@ -1,4 +1,4 @@
-import {initParkingLot, searchParkingLotsByCondition} from "../actions";
+import {initParkingLot, searchParkingLotsByCondition,alterParkinglotstatus} from "../actions";
 import axios from "axios";
 let url = `http://localhost:9090/parkingLots`;
 const parkingLotsApi = {
@@ -29,6 +29,21 @@ const parkingLotsApi = {
             }
         }).then((response) => {
             dispatch(searchParkingLotsByCondition(response.data));
+        }).catch(function (error) {
+            console.log(error);
+        })
+    },
+
+    updateParkinglotstatus(parkinglotId,parkinglotStatus,dispatch){
+        axios.put(`http://localhost:9090/parkingLots/status`,{
+            //
+
+                id: parkinglotId,
+                status: parkinglotStatus,
+
+            headers: {"Authorization": window.localStorage.token},
+        }).then((response) => {
+            dispatch(alterParkinglotstatus(parkinglotId,parkinglotStatus));
         }).catch(function (error) {
             console.log(error);
         })

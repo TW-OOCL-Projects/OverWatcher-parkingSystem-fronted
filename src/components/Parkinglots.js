@@ -9,44 +9,58 @@ const Option = Select.Option;
 
 const Search = Input.Search;
 
-const columns = [{
-    title: 'Id',
-    dataIndex: 'id',
-    key: 'id',
-    render: text => <a >{text}</a>,
-}, {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-}, {
-    title: '剩余车位',
-    dataIndex: 'size',
-    key: 'size',
-}, {
-    title: '初始车位',
-    dataIndex: 'initSize',
-    key: 'initSize',
-}, {
-    title: '状态',
-    dataIndex: 'status',
-    key: 'status',
-},{
-    title: '操作',
-    key: 'command',
-    render: (text, record) => (
-        <span>
-        <a  className="ant-dropdown-link">修改 </a>
-        <Divider type="vertical" />
-        <a >关闭</a>
-        </span>
-    ),
-}];
-
 export default class Parkinglots extends Component{
 
     state = {
         selected: "name"
     };
+    constructor(props) {
+        super(props);
+        this.columns = [{
+            title: 'Id',
+            dataIndex: 'id',
+            key: 'id',
+            render: text => <a>{text}</a>,
+        }, {
+            title: '姓名',
+            dataIndex: 'name',
+            key: 'name',
+        }, {
+            title: '剩余车位',
+            dataIndex: 'size',
+            key: 'size',
+        }, {
+            title: '初始车位',
+            dataIndex: 'initSize',
+            key: 'initSize',
+        }, {
+            title: '状态',
+            dataIndex: 'status',
+            key: 'status',
+        }, {
+            title: '操作',
+            key: 'command',
+            render: (text, record) => (
+                <span>
+                    <a className="ant-dropdown-link">修改 </a>
+                    <Divider type="vertical"/>
+                    <a onClick={() =>this.update(record.id, record.status)}>{record.status=="开放" ? '关闭' : '开放'}</a>
+                </span>
+            ),
+        }];
+    }
+
+    update=(parkinglotId,bfstatus)=>{
+        console.log(parkinglotId)
+        let parkinglotStatus="";
+        if(bfstatus == "开放"){
+            parkinglotStatus = "关闭"
+        }else {
+            parkinglotStatus = "开放"
+        }
+        console.log(parkinglotStatus)
+        this.props.alterParkinglotStatus(parkinglotId,parkinglotStatus)
+    }
 
     render(){
         const datas=(this.props.Parkinglots).map((lot,index)=>{
@@ -56,6 +70,7 @@ export default class Parkinglots extends Component{
 
         const store = createStore(rootReducer);
         ParkingLotsApi.init(store.dispatch);
+        const columns = this.columns;
         return(
             <div>
                 <Row>
