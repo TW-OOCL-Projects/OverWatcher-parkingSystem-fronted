@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {Table, Input, Select, Col, Icon, Popconfirm, Modal,Radio,message} from 'antd';
-import index from "../reducers";
-import orderApi from "../API/orderApi"
+import {Col, Icon, Input, message, Modal, Radio, Select, Table} from 'antd';
+
 const Option = Select.Option;
 const Search = Input.Search;
 const RadioGroup = Radio.Group;
 
 export default class Orders extends Component {
-    state = { visible: false,selected:"type",orderId:0,parkingBoyId: 0}
+    state = { visible: false,selected:"type",orderId:0,parkingBoyId: 0};
     constructor(props) {
         super(props);
         this.columns = [{
@@ -45,19 +44,19 @@ export default class Orders extends Component {
         console.log(this.datas);
     }
     handleOk = (e) => {
-        console.log(this.state.parkingBoyId)
-        console.log(e)
-        this.props.assignfinish(this.state.orderId,this.state.parkingBoyId)
+        console.log(this.state.parkingBoyId);
+        console.log(e);
+        this.props.assignfinish(this.state.orderId,this.state.parkingBoyId);
         this.setState({
             visible: false,
         });
-    }
+    };
     handleCancel = (e) => {
         console.log(e);
         this.setState({
             visible: false,
         });
-    }
+    };
     assign = (id) => {
         this.setState({
             visible: true,
@@ -65,13 +64,13 @@ export default class Orders extends Component {
         });
         const datas = this.datas.dataSource;
         this.props.handle(id);
-    }
+    };
     onChange = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
             parkingBoyId: e.target.value
         });
-    }
+    };
     render() {
         const datas = (this.props.orders).map((order, index) => {
             const {id, carId, type, status} = order;
@@ -80,7 +79,7 @@ export default class Orders extends Component {
         const list = (this.props.list).map((parkingBoy,index)=>{
             const {id,name} = parkingBoy;
             return {key:index,id,name}
-        })
+        });
         const radioStyle = {
             display: 'block',
             height: '30px',
@@ -89,7 +88,7 @@ export default class Orders extends Component {
         let parkingList = list.map(boy =>{
             return <Radio style={radioStyle} value={boy.id}>{boy.name}</Radio>
             }
-        )
+        );
         const columns = this.columns;
         return (
             <div>

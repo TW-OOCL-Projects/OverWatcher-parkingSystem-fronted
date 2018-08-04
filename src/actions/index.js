@@ -32,6 +32,17 @@ const assignParkingboy = (boysObject) => {
 };
 const scramble=(orderObject)=>{
     return {type:'SCRAMBLE',orderObject}
-}
+};
 
-export {initEmployee, initParkingLot, initParkingBoy, initParkingLotDetail, initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,assignParkingboy,scramble,searchParkingLotsByCondition};
+const searchParkingBoysByCondition=(parkingBoysObject)=>{
+    return {type:'SELECT_PARKINGBOYS_BY_CONDITION',parkingBoysObject}
+};
+
+
+export {initEmployee, initParkingLot,
+    initParkingBoy, initParkingLotDetail,
+    initOrderApi, searchOrdersByCondition,
+    searchEmployeesByCondition,assignParkingboy,
+    scramble,searchParkingLotsByCondition,
+    searchParkingBoysByCondition
+    };

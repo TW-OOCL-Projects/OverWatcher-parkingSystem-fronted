@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import ParkingBoys from "../components/Parkingboys";
+import ParkingBoysApi from "../API/ParkingBoysApi"
 
 const mapStateToProps = (state, ownProps) =>{
     return {
@@ -9,7 +10,11 @@ const mapStateToProps = (state, ownProps) =>{
 };
 
 const mapDispatchToProps = (dispatch, ownProps) =>{
-    return null;
+    return {
+        selectedParkingBoysByValue:(value, selected)=>{
+            ParkingBoysApi.findParkingBoysByConditions(value,selected,dispatch);
+        }
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingBoys)
