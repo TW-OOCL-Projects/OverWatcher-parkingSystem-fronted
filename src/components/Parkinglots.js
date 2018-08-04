@@ -4,6 +4,7 @@ import {createStore} from "redux";
 import rootReducer from "../reducers";
 import ParkingLotsApi from "../API/ParkingLotsApi";
 import WrappedParkingLotForm from '../containers/NewParkingLotContainer'
+import {message} from "antd/lib/index";
 
 const Option = Select.Option;
 
@@ -135,7 +136,7 @@ export default class Parkinglots extends Component{
 
     selectedByConditions(value,selected){
         if (value === "") {
-            alert("请输入文本");
+            message.error("请输入搜索条件！",2);
         } else {
             this.props.selectedParkingLotsByValue(value, selected);
         }

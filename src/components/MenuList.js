@@ -30,11 +30,13 @@ export default class MenuList extends Component {
     };
 
     render() {
+        console.log(window.localStorage.roles);
         return (
             <Menu defaultSelectedKeys={['1']} >
+                {window.localStorage.roles==="管理员"&&
                 <Menu.Item key="1" onClick={()=>this.reflushEmployee()}>
                     <Link to="/Employees"><Icon type="form"/>员工管理</Link>
-                </Menu.Item>
+                </Menu.Item>}
                 <Menu.Item key="2" onClick={()=>this.reflushParkinglot()}>
                     <Link to="/parkinglots"><Icon type="form"/>停车场管理</Link>
                 </Menu.Item>

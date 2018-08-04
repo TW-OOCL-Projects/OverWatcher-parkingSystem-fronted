@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Divider, Button, Input, Select, Col, Icon, Row} from 'antd';
+import {Table, Divider, message, Input, Select, Col, Icon, Row} from 'antd';
 import Transfers from "./Transfers";
 
 const Option = Select.Option;
@@ -81,7 +81,7 @@ export default class Employees extends Component {
     }
     selectedByConditions(value,selected){
         if (value === "") {
-            alert("请输入文本");
+            message.error("请输入搜索条件！",2);
         } else {
             this.props.selectedParkingBoysByValue(value, selected);
         }
