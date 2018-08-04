@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal} from 'antd';
-import WrappedNormalLoginForm from "./NewEmployee";
+import WrappedNormalLoginForm from "../containers/NewEmployeeContainer";
 
 const Option = Select.Option;
 

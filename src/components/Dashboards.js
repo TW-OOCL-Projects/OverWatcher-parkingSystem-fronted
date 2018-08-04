@@ -20,7 +20,7 @@ export default class Dashboards extends Component{
             <div>
                 <Row gutter={16}>
                     {datas.map(item =>
-                        <Col span={8}>
+                        <Col span={8} style={{marginBottom:20}}>
                             <Card title={item.parkingLotName}>
                                 <Row>
                                     <Col span={12}>

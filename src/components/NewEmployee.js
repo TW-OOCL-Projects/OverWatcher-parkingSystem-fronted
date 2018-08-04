@@ -17,7 +17,8 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('姓名：'+values.userName+"\n邮箱："+values.email+"\n电话："+values.phone);
+                console.log('姓名：'+values.userName+"\n职务："+values.role+"\n邮箱："+values.email+"\n电话："+values.phone);
+                this.props.createEmployee(values);
                 this.props.hideModal();
                 this.props.form.resetFields()
             }
@@ -36,6 +37,18 @@ class NormalLoginForm extends React.Component {
                         rules: [{ required: true, message: '用户名不能为空!' }],
                     })(
                         <Input placeholder="请输入姓名"/>
+                    )}
+                </FormItem>
+                <FormItem
+                    {...formItemLayout}
+                    label="职务"
+                >
+                    {getFieldDecorator('role', {
+                        rules: [{
+                            required: true, message: '职务不能为空!',
+                        }],
+                    })(
+                        <Input type="text" placeholder="请输入职务" />
                     )}
                 </FormItem>
                 <FormItem

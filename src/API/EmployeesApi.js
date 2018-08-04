@@ -1,5 +1,6 @@
-import {initEmployee,searchEmployeesByCondition} from "../actions";
+import {initEmployee,searchEmployeesByCondition,addEmployee} from "../actions";
 import axios from "axios";
+import {message} from "antd/lib/index";
 
 let url = `http://localhost:9090/employees`;
 const employeesApi = {
@@ -49,6 +50,26 @@ const employeesApi = {
         }).catch(function (error) {
             console.log(error);
         })
+    },
+    addNewEmployee(values, dispatch){
+        axios
+            .post("http://localhost:9090/employees", {
+                name:values.userName,
+                roleList:[{name:values.role}],
+                email:values.email,
+                phone:values.phone
+            })
+            .then(res => {
+                console.log(res);
+                dispatch(addEmployee(values));
+                this.updateServerData(dispatch, window.localStorage.token)
+                message.success('员工新建成功！',2);
+
+            })
+            .catch(function(error) {
+                console.log(error);
+                message.success('员工新建失败！',2);
+            });
     }
 };
 
