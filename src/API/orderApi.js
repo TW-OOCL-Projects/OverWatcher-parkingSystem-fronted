@@ -1,4 +1,4 @@
-import {initOrderApi, searchOrdersByCondition} from "../actions";
+import {initOrderApi, searchOrdersByCondition,assignParkingboy,scramble} from "../actions";
 import axios from "axios";
 
 const ordersApi = {
@@ -15,30 +15,47 @@ const ordersApi = {
     },
 
     findOrdersByConditions(value, selected, dispatch) {
-
-        let url = "http://localhost:9090/orders";
-        if (selected === "status") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
-        } else if (selected === "type") {
-            url += "/" + selected + "?" + selected + "=" + value;
-            console.log(url);
-        } else if (selected === "id") {
-            url += "/" + value;
-            console.log(url);
-        }
-        // else if(selected === "carId"){
-        //     url += "?" + selected + "=" + value;
-        // }
-
-        axios.get(url, {
-            headers: {"Authorization": window.localStorage.token}
+        axios.get("http://localhost:9090/orders/condition", {
+            headers: {"Authorization": window.localStorage.token},
+            params:{
+                condition:selected,
+                value:value
+            }
         }).then((response) => {
             console.log(response.data);
             dispatch(searchOrdersByCondition(response.data));
         }).catch(function (error) {
             console.log(error);
         })
+    },
+    assigned(id,dispatch) {
+        axios.get(`http://localhost:9090/employees/onWork`, {
+            headers: {"Authorization": window.localStorage.token}
+        }).then((response) => {
+            dispatch(assignParkingboy(response.data));
+        }).catch(function (error) {
+            console.log(error);
+        })
+    },
+    qiangdan(dispatch, orderId, boyId) {
+        axios
+            .put(
+                `http://localhost:9090/orders/${orderId}/parkingBoy/${boyId}`,
+                {
+                    headers: {"Authorization": window.localStorage.token},
+                }
+            )
+            .then(response => {
+                console.log(
+                    "点击一个订单进行抢单的请求结果\n----------------------"
+                );
+                console.log(response);
+                const order = response.data;
+                dispatch(scramble(order));
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     },
     init(dispatch) {
         this.updateServerData(dispatch, window.localStorage.token)

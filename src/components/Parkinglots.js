@@ -43,17 +43,18 @@ const columns = [{
 }];
 
 export default class Parkinglots extends Component{
+
+    state = {
+        selected: "name"
+    };
+
     render(){
         const datas=(this.props.Parkinglots).map((lot,index)=>{
-            const {id,name,size,status,initSize}=lot
+            const {id,name,size,status,initSize}=lot;
             return {key:index ,id,name,size,status,initSize}
         });
 
-        function handleChange(value) {
-            console.log(`selected ${value}`);
-        }
-        const store = createStore(rootReducer)
-        console.log(this.props.match)
+        const store = createStore(rootReducer);
         ParkingLotsApi.init(store.dispatch);
         return(
             <div>
@@ -61,17 +62,30 @@ export default class Parkinglots extends Component{
                     <Col span={4} style={{textAlign:"left"}}><Button onClick={this.handleAdd} type="primary"> 新 建 </Button></Col>
                     {/* <Col span={8}></Col> */}
                     <Col span={16} offset={4} style={{textAlign:"right"}}>
-                        <Select defaultValue="name" style={{ width: 120 }} onChange={handleChange}>
-                            <Option value="name">Name</Option>
-                            <Option value="phone">Phone</Option>
-                            <Option value="size">Size</Option>
+                        <Select defaultValue={this.state.selected} style={{ width: 150 }} onChange={(value)=>{
+                            this.setState({
+                                selected:value
+                            })
+                        }}>
+                            <Option value="name">名字</Option>
+                            <Option value="size-less">剩余容量不大于</Option>
+                            <Option value="size-more">剩余容量不小于</Option>
+                            <Option value="status">状态</Option>
                         </Select>&nbsp;&nbsp;
                         <Search prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                onSearch={value => console.log(value)} style={{ width: 200 }} enterButton="搜索"/>
+                                onSearch={value => this.selectedByConditions(value,this.state.selected)} style={{ width: 200 }} enterButton="搜索"/>
                     </Col>
                 </Row>
                 <Table bordered columns={columns} dataSource={datas} style={{marginTop:"20px"}}/>
             </div>
         );
+    }
+
+    selectedByConditions(value,selected){
+        if (value === "") {
+            alert("请输入文本");
+        } else {
+            this.props.selectedParkingLotsByValue(value, selected);
+        }
     }
 }
