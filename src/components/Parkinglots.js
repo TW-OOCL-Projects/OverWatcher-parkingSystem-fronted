@@ -22,7 +22,7 @@ export default class Parkinglots extends Component{
             key: 'id',
             render: text => <a>{text}</a>,
         }, {
-            title: '名称',
+            title: '姓名',
             dataIndex: 'name',
             key: 'name',
         }, {
@@ -40,13 +40,16 @@ export default class Parkinglots extends Component{
         }, {
             title: '操作',
             key: 'command',
-            render: (text, record) => (
-                <span>
-                    <a className="ant-dropdown-link">修改 </a>
-                    <Divider type="vertical"/>
-                    <a onClick={() =>this.update(record.id, record.status)}>{record.status=='开放' ? '关闭' : '开放'}</a>
-                </span>
-            ),
+            render: (text, record) => {
+                if(record.size===record.initSize){
+                    return(
+                        <span>
+                            <a className="ant-dropdown-link">修改 </a>
+                            <Divider type="vertical"/>
+                            <a onClick={() =>this.update(record.id, record.status)}>{record.status=="开放" ? '关闭' : '开放'}</a>
+                        </span>
+                    )}
+            },
         }];
     }
 
