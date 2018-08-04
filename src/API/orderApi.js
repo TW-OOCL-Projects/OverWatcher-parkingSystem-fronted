@@ -46,9 +46,6 @@ const ordersApi = {
                 }
             )
             .then(response => {
-                console.log(
-                    "点击一个订单进行抢单的请求结果\n----------------------"
-                );
                 console.log(response);
                 const order = response.data;
                 dispatch(scramble(order));

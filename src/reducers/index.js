@@ -65,6 +65,15 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
             newState.newEmployees = [...action.newEmployeeObject];
             return newState
         }
+        case 'UPDATE_PARKINGLOT': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.parkingLots.forEach(parkingLot=>{
+                if(parkingLot.id == action.id)
+                    parkingLot.status=action.status
+                }
+            )
+            return newState
+        }
         default:
             return state
     }
