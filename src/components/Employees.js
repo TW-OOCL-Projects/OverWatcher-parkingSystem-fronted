@@ -82,8 +82,7 @@ export default class Employees extends Component {
         return (
             <div>
                 <Row>
-                    <Col span={4} style={{textAlign: "left"}}><Button onClick={this.showModal} type="primary"> 新
-                        建 </Button></Col>
+                    <Col span={4} style={{textAlign: "left"}}><Button onClick={this.showModal} type="primary"> 新建员工 </Button></Col>
                     <Modal
                         title="新建员工"
                         visible={this.state.visible}

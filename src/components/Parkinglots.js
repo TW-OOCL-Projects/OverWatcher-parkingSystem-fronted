@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Divider,Button,Input, Select,Row, Col,Icon} from 'antd';
+import { Table, Divider,Button,Input, Select,Row, Col,Icon,Modal} from 'antd';
 import {createStore} from "redux";
 import rootReducer from "../reducers";
 import ParkingLotsApi from "../API/ParkingLotsApi";
-
+import WrappedParkingLotForm from '../containers/NewParkingLotContainer'
 
 const Option = Select.Option;
 
@@ -22,7 +22,7 @@ export default class Parkinglots extends Component{
             key: 'id',
             render: text => <a>{text}</a>,
         }, {
-            title: '姓名',
+            title: '名称',
             dataIndex: 'name',
             key: 'name',
         }, {
@@ -62,6 +62,31 @@ export default class Parkinglots extends Component{
         this.props.alterParkinglotStatus(parkinglotId,parkinglotStatus)
     }
 
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    // handleOk = (e) => {
+    //     console.log(e);
+    //     this.setState({
+    //         visible: false,
+    //     });
+    // };
+    hideModal = () =>{
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
     render(){
         const datas=(this.props.Parkinglots).map((lot,index)=>{
             const {id,name,size,status,initSize}=lot;
@@ -74,7 +99,16 @@ export default class Parkinglots extends Component{
         return(
             <div>
                 <Row>
-                    <Col span={4} style={{textAlign:"left"}}><Button onClick={this.handleAdd} type="primary"> 新 建 </Button></Col>
+                    <Col span={4} style={{textAlign:"left"}}><Button onClick={this.showModal} type="primary"> 新建停车场 </Button></Col>
+                    <Modal
+                        title="新建停车场"
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                        footer={null}
+                    >
+                        <WrappedParkingLotForm hideModal={this.hideModal}/>
+                    </Modal>
                     {/* <Col span={8}></Col> */}
                     <Col span={16} offset={4} style={{textAlign:"right"}}>
                         <Select defaultValue={this.state.selected} style={{ width: 150 }} onChange={(value)=>{
