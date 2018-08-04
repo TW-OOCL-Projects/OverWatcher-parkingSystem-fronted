@@ -1,5 +1,6 @@
-import {initParkingLot, searchParkingLotsByCondition,alterParkinglotstatus} from "../actions";
+import {initParkingLot, searchParkingLotsByCondition, alterParkinglotstatus, addParkingLot} from "../actions";
 import axios from "axios";
+import {message} from "antd/lib/index";
 let url = `http://localhost:9090/parkingLots`;
 const parkingLotsApi = {
 
@@ -47,6 +48,26 @@ const parkingLotsApi = {
         }).catch(function (error) {
             console.log(error);
         })
+    },
+    addNewParkingLot(values, dispatch){
+        axios
+            .post("http://localhost:9090/parkingLots", {
+                name:values.name,
+                size:values.size,
+                initSize:values.size,
+                status:"开放"
+            })
+            .then(res => {
+                console.log(res);
+                dispatch(addParkingLot(values));
+                this.init(dispatch);
+                message.success('停车场新建成功！',2);
+
+            })
+            .catch(function(error) {
+                console.log(error);
+                message.error('停车场新建失败！',2);
+            });
     }
 };
 

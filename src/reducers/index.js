@@ -1,4 +1,4 @@
-export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],orders:[],boys:[],newEmployees:[]}, action) => {
+export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],orders:[],boys:[],newEmployees:[],newParkingLots:[]}, action) => {
     switch (action.type) {
         case 'INITEMPLOYEE': {
             let newState = JSON.parse(JSON.stringify(state));
@@ -63,6 +63,11 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
         case 'ADD_EMPLOYEE': {
             let newState = JSON.parse(JSON.stringify(state));
             newState.newEmployees = [...action.newEmployeeObject];
+            return newState
+        }
+        case 'ADD_PARKINGLOT': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.newParkingLots = [...action.newParkingLotObject];
             return newState
         }
         case 'UPDATE_PARKINGLOT': {

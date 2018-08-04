@@ -41,6 +41,9 @@ const initDashBoardsParkingLot = (DashBoardsparkingLotsObject) => {
 const addEmployee=(newEmployeeObject)=>{
     return{type:'ADD_EMPLOYEE',newEmployeeObject}
 };
+const addParkingLot=(newParkingLotObject)=>{
+    return{type:'ADD_PARKINGLOT',newParkingLotObject}
+};
 const alterParkinglotstatus=(id,status)=>{
     return{type:'UPDATE_PARKINGLOT',id,status}
 };
@@ -50,6 +53,6 @@ export {initEmployee, initParkingLot, initParkingBoy,
     assignParkingboy,
     scramble,
     searchParkingBoysByCondition,
-    addEmployee,alterParkinglotstatus
+    addEmployee,addParkingLot,alterParkinglotstatus
 };
 

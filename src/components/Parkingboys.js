@@ -54,9 +54,8 @@ export default class Employees extends Component {
         return (
             <div>
                 <Row>
-                    <Col span={4} style={{textAlign: "left"}}><Button type="primary"> 新 建 </Button></Col>
                     {/* <Col span={8}></Col> */}
-                    <Col span={16} offset={4} style={{textAlign: "right", marginBottom: "20px"}}>
+                    <Col span={20} offset={4} style={{textAlign: "right", marginBottom: "20px"}}>
                         <Select defaultValue={this.state.selected} style={{width: 120}} onChange={value => {
                             this.setState({
                                 selected: value
