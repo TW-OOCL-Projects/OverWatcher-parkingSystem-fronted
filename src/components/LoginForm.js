@@ -27,6 +27,7 @@ export default class LoginForm extends Component {
                 .then((response) => {
                     window.localStorage.token = response.data.token;
                     window.localStorage.roles = response.data.roles;
+                    window.localStorage.username = response.data.username;
                     employeesApi.init(store.dispatch);
                     parkingLotApi.init(store.dispatch);
                     parkingBoyApi.init(store.dispatch);
