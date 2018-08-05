@@ -22,9 +22,15 @@ export default class EmployeeManagerInterface extends Component{
                     style={{ lineHeight: '64px' }}
                 >
                     <Col span={8} offset={2} style={{color:"#fff",fontSize:"1.5em",textAlign:"left"}}>
-                        Welcome to OverWatch Parking System!
+                        Welcome to OverWatcher Parking System!
                     </Col>
-                    <Col span={12} style={{textAlign:"right"}}><Avatar style={{ backgroundColor: '#87d068' }} icon="user" /></Col>
+                    <Col span={12} style={{textAlign:"right"}}>
+                        <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{color:"#fff"}}>
+                            您好，{window.localStorage.username} [{window.localStorage.roles}]！
+                        </span>
+                    </Col>
                 </Menu>
             </Header>
             <Content style={{ padding: '50px 150px' }}>
