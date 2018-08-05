@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import ParkingBoys from "../components/Parkingboys";
 import ParkingBoysApi from "../API/ParkingBoysApi"
+import EmployeesApi from "../API/EmployeesApi";
 
 const mapStateToProps = (state, ownProps) =>{
     return {
@@ -18,9 +19,12 @@ const mapDispatchToProps = (dispatch, ownProps) =>{
         showLeft:()=>{
             ParkingBoysApi.requestUndistributedParkingLots(dispatch);
         },
-        // showright:()=>{
-        //     TransfersApi.init(dispatch);
-        // }
+        frozenOrUnfrozen:(userId,aliveStatus,finish)=>{
+            EmployeesApi.frozenOrUnfrozen(userId,aliveStatus,finish,dispatch)
+        },
+        confirm:(userId,user,finish)=>{
+            EmployeesApi.editEmploy(userId,user,finish,dispatch)
+        }
     }
 };
 
