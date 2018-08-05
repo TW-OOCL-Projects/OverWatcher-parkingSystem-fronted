@@ -1,4 +1,4 @@
-import {initEmployee, searchEmployeesByCondition, addEmployee, changeAliveAction} from "../actions";
+import {initEmployee, searchEmployeesByCondition, addEmployee, changeAliveAction,editEmployeeAction} from "../actions";
 import axios from "axios";
 import {message} from "antd/lib/index";
 
@@ -81,7 +81,7 @@ const employeesApi = {
     frozenOrUnfrozen(userId, aliveStatus, finish, dispatch) {
         axios({
             method: 'put',
-            url: 'http://localhost:9090/employees',
+            url: `http://localhost:9090/employees/${userId}/alive`,
             data: {
                 id: userId,
                 alive: aliveStatus
@@ -98,7 +98,36 @@ const employeesApi = {
                 console.log(error);
                 // message.error('员工新建失败！', 2);
             });
+    },
+    editEmploy(userId,user,finish,dispatch){
+        axios({
+            method: 'put',
+            url: `http://localhost:9090/employees/${userId}`,
+            data: {
+                userName:user.username,
+                id: userId,
+                name:user.name,
+                email:user.email,
+                phone:user.phone,
+                roleList:[user.role]
+            },
+            headers: {"Authorization": window.localStorage.token, "Content-Type": "application/json"},
+        }).then(respones => {
+            console.log("==== 修改用户请求返回的信息 ====");
+            console.log(respones);
+            const emp=respones.data
+            finish()
+            dispatch(editEmployeeAction(emp))
+
+        })
+            .catch(function (error) {
+                console.log(error);
+                // message.error('员工新建失败！', 2);
+            });
+
+
     }
+
 };
 
 export default employeesApi;

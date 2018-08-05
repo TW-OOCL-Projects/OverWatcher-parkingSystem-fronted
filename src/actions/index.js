@@ -50,6 +50,9 @@ const alterParkinglotstatus=(id,status)=>{
 const changeAliveAction=(id,aliveStatus)=>{
     return{type:'FROZEN_OR_ACTIVED',id,aliveStatus}
 };
+const editEmployeeAction=(employee)=>{
+    return{type:'EDIT_EMPLOYEE',employee}
+}
 export {initEmployee, initParkingLot, initParkingBoy,
     initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
     initDashBoardsParkingLot,searchParkingLotsByCondition,
@@ -57,7 +60,8 @@ export {initEmployee, initParkingLot, initParkingBoy,
     scramble,
     searchParkingBoysByCondition,
     addEmployee,addParkingLot,alterParkinglotstatus,
-    changeAliveAction
+    changeAliveAction,
+    editEmployeeAction
 };
 
 

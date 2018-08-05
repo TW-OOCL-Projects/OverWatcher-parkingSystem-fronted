@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal, Popconfirm, message} from 'antd';
 import WrappedNormalLoginForm from "../containers/NewEmployeeContainer";
+import EditEmployeeBox from "./EmployeeEditBox";
 
 const Option = Select.Option;
 
@@ -10,7 +11,7 @@ const Search = Input.Search;
 export default class Employees extends Component {
     constructor(props) {
         super(props)
-        this.state = {editing: false}
+        this.state = {editing: props.Employees.map(emp=>false)}
     }
 
     columns = [{
@@ -49,13 +50,13 @@ export default class Employees extends Component {
                 <span>
                         <a className="ant-dropdown-link" onClick={()=>{this.edit(record)}}>修改 </a>
                     <Modal
-                        title="新建员工"
-                        visible={this.state.editing}
+                        title="修改员工信息"
+                        visible={this.state.editing[record.key]}
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
                         footer={null}
                     >
-                        <WrappedNormalLoginForm hideModal={this.hideModal}/>
+                        <EditEmployeeBox employeeMsg={record} close={this.handleCancel} editConfirm={this.props.confirm}/>
                     </Modal>
                         <Divider type="vertical"/>
                     {record.alive ? (<Popconfirm
@@ -77,10 +78,13 @@ export default class Employees extends Component {
         }];
     edit=(record)=>{
         this.setState(preState=>{
-            let newState={...preState}
-            newState.editing=!preState.editing
             console.log("=== 点击修改 ===")
+            let newState = JSON.parse(JSON.stringify(this.state));
             console.log(newState)
+            console.log(record)
+
+            newState.editing[record.key]=true
+
             return newState
         })
     }
@@ -126,9 +130,10 @@ export default class Employees extends Component {
     };
 
     handleCancel = (e) => {
+        console.log("=== 模态框关闭 ===");
         console.log(e);
         this.setState({
-            editing: false,
+            editing: this.props.Employees.map(emp=>false),
             visible: false
         });
     };

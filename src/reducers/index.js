@@ -88,9 +88,40 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
             return newState
         }
 
+        case 'EDIT_EMPLOYEE': {
+            let newState = JSON.parse(JSON.stringify(state));
+            console.log("=== 前端渲染前 ===")
+            console.log(action.employee)
+            const newEmployees=newState.employees.map(e=>{
+                    if(e.id == action.employee.id){
+                        action.employee.role=action.employee.roleList[0]
+                        console.log("=== 前端渲染后 ===")
 
+                        return action.employee
+
+                    }else {
+                        return e;
+                    }
+
+                }
+            )
+            newState.employees=newEmployees.map(employee=>{
+                switch (employee.role) {
+                    case "employee":employee.role="员工";break;
+                    case "manager":employee.role="经理";break;
+                    case "admin":employee.role="管理员";break;
+                }
+                return employee
+            })
+            console.log(newState)
+            return newState
+        }
         default:
             return state
     }
+}
+
+const roleFormat=(employee)=>{
+
 }
 
