@@ -73,7 +73,7 @@ export default class Transfers extends React.Component {
         return (
             <Transfer
                 dataSource={datas}
-                titles={['可选区', '管理区']}
+                titles={['暂未分配', '已分配']}
                 filterOption={this.filterOption}
                 targetKeys={keys}
                 onChange={(a, direction, moveId) => this.handleChange(direction, moveId, userId)}//{this.showsome()}

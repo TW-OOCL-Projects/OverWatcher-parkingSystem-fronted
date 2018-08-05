@@ -52,6 +52,7 @@ const ordersApi = {
                 console.log(response);
                 const order = response.data;
                 dispatch(scramble(order));
+                this.init(dispatch)
             })
             .catch(function(error) {
                 console.log(error);

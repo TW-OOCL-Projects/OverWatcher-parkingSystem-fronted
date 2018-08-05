@@ -45,8 +45,8 @@ const employeesApi = {
         }).then((response) => {
             //测试返回数据
             this.employees = response.data.map(serviceData => {
-                const {id, name, email, phone, roleList} = serviceData;
-                return {id, name, email, phone, role: roleList[0]};
+                const {id, username ,name, email, phone, roleList} = serviceData;
+                return {id, username,name, email, phone, role: roleList[0]};
             });
             dispatch(searchEmployeesByCondition(this.employees));
         }).catch(function (error) {
