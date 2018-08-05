@@ -148,7 +148,7 @@ export default class ParkingBoy extends Component {
                 <Row>
                     <Col span={4} style={{textAlign: "left"}}></Col>
                     {/* <Col span={8}></Col> */}
-                    <Col span={16} offset={4} style={{textAlign: "right", marginBottom: "20px"}}>
+                    <Col span={16} offset={4} style={{textAlign: "right"}}>
                         <Select defaultValue={this.state.selected} style={{width: 120}} onChange={value => {
                             this.setState({
                                 selected: value

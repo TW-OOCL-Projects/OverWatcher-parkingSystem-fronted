@@ -6,7 +6,7 @@ import Parkinglots from '../containers/ParkingLotsContainer'
 import Parkingboys from '../containers/ParkingBoysContainer'
 import Dashboards from '../containers/DashBoardsContainer'
 import Orders from '../containers/OrdersContainer'
-import {Avatar, Col, Layout, Menu,Button,Icon,message} from 'antd';
+import {Avatar, Col, Layout, Menu,Button,Icon,message,Popconfirm} from 'antd';
 import axios from "axios";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -56,9 +56,11 @@ export default class EmployeeManagerInterface extends Component{
                             您好，{window.localStorage.username} [{window.localStorage.roles}]！
                         </span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Button onClick={this.logout} type="primary">
+                        <Popconfirm placement="left" title={"您确认要退出登录吗？"} onConfirm={this.logout} okText="Yes" cancelText="No">
+                        <Button  type="primary">
                             <Icon type="poweroff" /> 退出登录
                         </Button>
+                    </Popconfirm>
                         </Col>
                     </Menu>
                 </Header>
