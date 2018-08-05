@@ -6,14 +6,24 @@ import Parkinglots from '../containers/ParkingLotsContainer'
 import Parkingboys from '../containers/ParkingBoysContainer'
 import Dashboards from '../containers/DashBoardsContainer'
 import Orders from '../containers/OrdersContainer'
-import {Avatar, Col, Layout, Menu,Button,Icon} from 'antd';
+import {Avatar, Col, Layout, Menu,Button,Icon,message} from 'antd';
+import axios from "axios";
 
 const { Header, Content, Footer, Sider } = Layout;
-
+let url = `https://over-back.herokuapp.com`;
 export default class EmployeeManagerInterface extends Component{
     logout=()=>{
-        window.localStorage.roles = undefined;
-        this.props.history.push('/')
+        message.loading('正在登出帐号..', 2)
+            .then(() => {
+                window.localStorage.roles = undefined;
+                axios({
+                    method: 'put',
+                    url: `${url}/logout`,
+                    data:{ id:window.localStorage.id}
+                });
+                this.props.history.push('/');
+                message.success('退出成功！', 2.5);
+            });
     };
     render(){
         console.log(window.localStorage.roles);
@@ -46,7 +56,7 @@ export default class EmployeeManagerInterface extends Component{
                             您好，{window.localStorage.username} [{window.localStorage.roles}]！
                         </span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Button onClick={this.logout} type="danger">
+                        <Button onClick={this.logout} type="primary">
                             <Icon type="poweroff" /> 退出登录
                         </Button>
                         </Col>
