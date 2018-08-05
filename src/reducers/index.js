@@ -1,4 +1,4 @@
-export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],orders:[],boys:[],newEmployees:[],newParkingLots:[]}, action) => {
+export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],orders:[],boys:[],newEmployees:[],newParkingLots:[],ownParkingLots:[],}, action) => {
     switch (action.type) {
         case 'INITEMPLOYEE': {
             let newState = JSON.parse(JSON.stringify(state));
@@ -87,7 +87,18 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
             )
             return newState
         }
-
+        case 'CHANGE_PARKINGLOT_UNDISTRIBUTED': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.parkingLots = [...action.undistributedParkingLots];
+            console.log("reducer--------------\n");
+            return newState
+        }
+        case 'SELECT_PARKINGLOT_UNDISTRIBUTED': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.undistributedParkingLots = [...action.undistributedParkingLots];
+            console.log("reducer--------------\n");
+            return newState
+        }
 
         default:
             return state
