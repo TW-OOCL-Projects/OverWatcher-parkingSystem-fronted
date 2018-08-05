@@ -46,8 +46,10 @@ export default class Employees extends Component {
             title: '操作',
             dataIndex: 'alive',
             key: 'alive',
-            render: (text, record) => (
-                <span>
+            render: (text, record) => {
+                if(record.role!=="管理员"){
+                    return(
+                        <span>
                         <a className="ant-dropdown-link" onClick={()=>{this.edit(record)}}>修改 </a>
                     <Modal
                         title="修改员工信息"
@@ -59,22 +61,24 @@ export default class Employees extends Component {
                         <EditEmployeeBox employeeMsg={record} close={this.handleCancel} editConfirm={this.props.confirm}/>
                     </Modal>
                         <Divider type="vertical"/>
-                    {record.alive ? (<Popconfirm
-                            title="冻结后该用户将无法登录，确定冻结吗？"
-                            onConfirm={() => {
-                                this.frozenOrActived(record)
-                            }}
-                        >
-                            <a>冻结</a>
-                        </Popconfirm>)
-                        : (
-                            <a onClick={() => {
-                                this.frozenOrActived(record)
-                            }}>激活</a>
-                        )
-                    }
+                            {record.alive ? (<Popconfirm
+                                    title="冻结后该用户将无法登录，确定冻结吗？"
+                                    onConfirm={() => {
+                                        this.frozenOrActived(record)
+                                    }}
+                                >
+                                    <a>冻结</a>
+                                </Popconfirm>)
+                                : (
+                                    <a onClick={() => {
+                                        this.frozenOrActived(record)
+                                    }}>激活</a>
+                                )
+                            }
                     </span>
-            )
+                    )
+                }
+                }
         }];
     edit=(record)=>{
         this.setState(preState=>{
