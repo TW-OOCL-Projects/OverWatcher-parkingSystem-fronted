@@ -77,7 +77,7 @@ export default class Employees extends Component {
                     dataSource={datas}
                 />
             </div>
-        );
+        ); 
     }
     selectedByConditions(value,selected){
         if (value === "") {
