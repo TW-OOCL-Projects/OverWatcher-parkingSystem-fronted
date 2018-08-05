@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal, Popconfirm,message} from 'antd';
+import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal, Popconfirm, message} from 'antd';
 import WrappedNormalLoginForm from "../containers/NewEmployeeContainer";
+import EditEmployeeBox from "./EmployeeEditBox";
 
 const Option = Select.Option;
 
@@ -10,6 +11,7 @@ const Search = Input.Search;
 export default class Employees extends Component {
     constructor(props) {
         super(props)
+        this.state = {editing: props.Employees.map(emp=>false)}
     }
 
     columns = [{
@@ -22,14 +24,19 @@ export default class Employees extends Component {
         dataIndex: 'name',
         key: 'name',
     }, {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-    }, {
-        title: '电话号码',
-        dataIndex: 'phone',
-        key: 'phone',
-    },
+        title: '用户名',
+        dataIndex: 'username',
+        key: 'username',
+    }
+        , {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        }, {
+            title: '电话号码',
+            dataIndex: 'phone',
+            key: 'phone',
+        },
         {
             title: '职务',
             dataIndex: 'role',
@@ -41,7 +48,16 @@ export default class Employees extends Component {
             key: 'alive',
             render: (text, record) => (
                 <span>
-                        <a className="ant-dropdown-link">修改 </a>
+                        <a className="ant-dropdown-link" onClick={()=>{this.edit(record)}}>修改 </a>
+                    <Modal
+                        title="修改员工信息"
+                        visible={this.state.editing[record.key]}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                        footer={null}
+                    >
+                        <EditEmployeeBox employeeMsg={record} close={this.handleCancel} editConfirm={this.props.confirm}/>
+                    </Modal>
                         <Divider type="vertical"/>
                     {record.alive ? (<Popconfirm
                             title="冻结后该用户将无法登录，确定冻结吗？"
@@ -52,7 +68,7 @@ export default class Employees extends Component {
                             <a>冻结</a>
                         </Popconfirm>)
                         : (
-                            <a onClick={()=>{
+                            <a onClick={() => {
                                 this.frozenOrActived(record)
                             }}>激活</a>
                         )
@@ -60,20 +76,33 @@ export default class Employees extends Component {
                     </span>
             )
         }];
-    finishActivated=()=>{
+    edit=(record)=>{
+        this.setState(preState=>{
+            console.log("=== 点击修改 ===")
+            let newState = JSON.parse(JSON.stringify(this.state));
+            console.log(newState)
+            console.log(record)
+
+            newState.editing[record.key]=true
+
+            return newState
+        })
+    }
+
+    finishActivated = () => {
         message.success('激活成功', 1);
     }
-    finishFrozen=()=>{
+    finishFrozen = () => {
         message.success('冻结成功', 1);
     }
     frozenOrActived = (record) => {
         console.log("员工表格\n---------------------------")
         console.log(record)
-        const aliveStatus=!record.alive
+        const aliveStatus = !record.alive
         if (record.alive) {
-            this.props.frozenOrUnfrozen(record.id,aliveStatus,this.finishFrozen)
-        }else {
-            this.props.frozenOrUnfrozen(record.id,aliveStatus,this.finishActivated)
+            this.props.frozenOrUnfrozen(record.id, aliveStatus, this.finishFrozen)
+        } else {
+            this.props.frozenOrUnfrozen(record.id, aliveStatus, this.finishActivated)
         }
     }
 
@@ -101,16 +130,18 @@ export default class Employees extends Component {
     };
 
     handleCancel = (e) => {
+        console.log("=== 模态框关闭 ===");
         console.log(e);
         this.setState({
-            visible: false,
+            editing: this.props.Employees.map(emp=>false),
+            visible: false
         });
     };
 
     render() {
         const datas = (this.props.Employees).map((emp, index) => {
-            const {id, name, email, phone, role, alive} = emp;
-            return {key: index, id, name, email, phone, role, alive}
+            const {id, name, username, email, phone, role, alive} = emp;
+            return {key: index, id, name, username, email, phone, role, alive}
         });
 
         return (
@@ -151,7 +182,7 @@ export default class Employees extends Component {
 
     selectedByConditions(value, selected) {
         if (value === "") {
-            message.error("请输入搜索条件！",2);
+            message.error("请输入搜索条件！", 2);
         } else {
             this.props.selectedEmployeeByValue(value, selected);
         }

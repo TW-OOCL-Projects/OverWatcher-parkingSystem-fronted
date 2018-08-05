@@ -1,4 +1,4 @@
-import {initEmployee, searchEmployeesByCondition, addEmployee, changeAliveAction} from "../actions";
+import {initEmployee, searchEmployeesByCondition, addEmployee, changeAliveAction,editEmployeeAction} from "../actions";
 import axios from "axios";
 import {message} from "antd/lib/index";
 
@@ -14,8 +14,8 @@ const employeesApi = {
             console.log("==== 获取所有员工列表 ====");
             console.log(response);
             this.employees = response.data.map(serviceData => {
-                const {id, name, email, phone, roleList, alive} = serviceData;
-                return {id, name, email, phone, role: roleList[0], alive};
+                const {id, name,username, email, phone, roleList, alive} = serviceData;
+                return {id, name,username, email, phone, role: roleList[0], alive};
             });
             dispatch(initEmployee(this.employees));
         }).catch(function (error) {
@@ -99,7 +99,36 @@ const employeesApi = {
                 console.log(error);
                 // message.error('员工新建失败！', 2);
             });
+    },
+    editEmploy(userId,user,finish,dispatch){
+        axios({
+            method: 'put',
+            url: `${url}/employees/${userId}`,
+            data: {
+                userName:user.username,
+                id: userId,
+                name:user.name,
+                email:user.email,
+                phone:user.phone,
+                roleList:[user.role]
+            },
+            headers: {"Authorization": window.localStorage.token, "Content-Type": "application/json"},
+        }).then(respones => {
+            console.log("==== 修改用户请求返回的信息 ====");
+            console.log(respones);
+            const emp=respones.data
+            finish()
+            dispatch(editEmployeeAction(emp))
+
+        })
+            .catch(function (error) {
+                console.log(error);
+                // message.error('员工新建失败！', 2);
+            });
+
+
     }
+
 };
 
 export default employeesApi;
