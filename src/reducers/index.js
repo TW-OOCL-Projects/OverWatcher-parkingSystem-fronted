@@ -85,6 +85,11 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
                         employee.alive=action.aliveStatus
                 }
             )
+            newState.parkingBoys.forEach(boy=>{
+                    if(boy.id == action.id)
+                        boy.alive=action.aliveStatus
+                }
+            )
             return newState
         }
         case 'CHANGE_PARKINGLOT_UNDISTRIBUTED': {
