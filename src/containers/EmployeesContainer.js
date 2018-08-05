@@ -3,17 +3,19 @@ import Employees from "../components/Employees";
 import EmployeesApi from "../API/EmployeesApi"
 
 
-const mapStateToProps = (state, ownProps) =>{
+const mapStateToProps = (state, ownProps) => {
     return {
-        value: state[ownProps.index],
-        Employees:state.employees
+        Employees: state.employees
     }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) =>{
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         selectedEmployeeByValue: (value,selected) => {
             EmployeesApi.findEmployeesByConditions(value,selected,dispatch);
+        },
+        frozenOrUnfrozen:(userId,aliveStatus,finish)=>{
+            EmployeesApi.frozenOrUnfrozen(userId,aliveStatus,finish,dispatch)
         }
     }
 };

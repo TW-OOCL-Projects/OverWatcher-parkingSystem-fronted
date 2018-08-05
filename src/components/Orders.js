@@ -32,7 +32,7 @@ export default class Orders extends Component {
             render: (text, record) => {
                 if (record.command === "无人处理") {
                     return (
-                        <button onClick={() => this.assign(record.id)}>指派</button>
+                        <a onClick={() => this.assign(record.id)}>指派</a>
                     )
                 }
             },
@@ -41,11 +41,11 @@ export default class Orders extends Component {
             const {id, carId, type, status} = order;
             return {key: index, id, carId, type, status, command: status}
         })};
-        console.log(this.datas);
+        // console.log(this.datas);
     }
     handleOk = (e) => {
         console.log(this.state.parkingBoyId);
-        console.log(e);
+        // console.log(e);
         this.props.assignfinish(this.state.orderId,this.state.parkingBoyId);
         this.setState({
             visible: false,
@@ -62,11 +62,10 @@ export default class Orders extends Component {
             visible: true,
             orderId:id
         });
-        const datas = this.datas.dataSource;
         this.props.handle(id);
     };
     onChange = (e) => {
-        console.log('radio checked', e.target.value);
+        // console.log('radio checked', e.target.value);
         this.setState({
             parkingBoyId: e.target.value
         });

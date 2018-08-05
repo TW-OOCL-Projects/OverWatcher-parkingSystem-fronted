@@ -49,12 +49,12 @@ export default class Employees extends Component {
 
         const datas = (this.props.parkingBoys).map((boy, index) => {
             const {id, name, email, phone, status, role} = boy;
-            return {key: index, id, name, email, phone, status, role, description: <Transfers/>}
+            return {key: index, id, name, email, phone, status, role}
         });
         return (
             <div>
                 <Row>
-                    <Col span={4} style={{textAlign: "left"}}><Button type="primary"> 新 建 </Button></Col>
+                    <Col span={4} style={{textAlign: "left"}}></Col>
                     {/* <Col span={8}></Col> */}
                     <Col span={16} offset={4} style={{textAlign: "right", marginBottom: "20px"}}>
                         <Select defaultValue={this.state.selected} style={{width: 120}} onChange={value => {
@@ -68,19 +68,37 @@ export default class Employees extends Component {
                             <Option value="status">状态</Option>
                         </Select>&nbsp;&nbsp;
                         <Search prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                onSearch={value => this.selectedByConditions(value,this.state.selected)} style={{width: 200}} enterButton="搜索"/>
+                                onSearch={value => this.selectedByConditions(value, this.state.selected)}
+                                style={{width: 200}} enterButton="搜索"/>
                     </Col>
                 </Row>
+
                 <Table
                     bordered
                     columns={columns}
-                    expandedRowRender={record => <p style={{textAlign: "center", margin: 0}}>{record.description}</p>}
+                    expandedRowRender={this.generateTransfer}
                     dataSource={datas}
                 />
             </div>
         );
     }
-    selectedByConditions(value,selected){
+
+    generateTransfer = (e) => {
+        console.log("=============================== e =================================")
+        console.log(this.props.parkingLots)
+        const parkinglotLeftData = this.props.parkingLots.filter( lot=>
+            (lot.status === "开放" && (lot.userId === 0))
+        )
+        const parkinglotRightData = this.props.parkingLots.filter( lot=>
+            (lot.status === "开放" && (lot.userId === e.id))
+        )
+        console.log("=============================== after =================================")
+        console.log(parkinglotLeftData);
+        console.log(parkinglotRightData);
+        return(<p style={{textAlign: "center", margin: 0}} ><Transfers left={parkinglotLeftData} right={parkinglotRightData} id={e.id}/></p>)
+    }
+
+    selectedByConditions(value, selected) {
         if (value === "") {
             alert("请输入文本");
         } else {

@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { Icon, Input, Button,Col,Card,message } from 'antd';
+import React, {Component} from 'react';
+import {Button, Card, Col, Icon, Input, message} from 'antd';
 import axios from "axios";
 import "../bubble.css";
-import { createStore } from 'redux'
-import rootReducer from "../reducers";
 import employeesApi from "../API/EmployeesApi";
 import parkingLotApi from '../API/ParkingLotsApi'
 import DashBoardsApi from '../API/DashBoardsApi'
@@ -16,7 +14,6 @@ export default class LoginForm extends Component {
         super(props);
         this.userName=React.createRef();
         this.pwd=React.createRef();
-
     }
     getEmployees(e){
         let inputUser = this.userName.current.input.value;
@@ -30,12 +27,13 @@ export default class LoginForm extends Component {
                 .then((response) => {
                     window.localStorage.token = response.data.token;
                     window.localStorage.roles = response.data.roles;
+                    window.localStorage.username = response.data.username;
                     employeesApi.init(store.dispatch);
                     parkingLotApi.init(store.dispatch);
                     parkingBoyApi.init(store.dispatch);
                     DashBoardsApi.init(store.dispatch);
                     order.init(store.dispatch);
-                    this.props.history.push('/Employees')
+                    this.props.history.push('/manager/employees')
                 }).catch(function (error) {
                 message.error('用户名或密码错误！',1);
                 console.log(error);
@@ -43,6 +41,7 @@ export default class LoginForm extends Component {
         }
     }
     render() {
+
         return (
             <div>
                 <div className="search-bg hero" style={{marginBottom:100}}>
@@ -51,7 +50,7 @@ export default class LoginForm extends Component {
                     <div id="stars3" className=""/>
                 </div>
                 <Col span={6} offset={9}>
-                    <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}} className="login-box">
+                    <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}} className="login-box animated bounceIn">
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                placeholder="请输入用户名"
                         ref={this.userName}/>

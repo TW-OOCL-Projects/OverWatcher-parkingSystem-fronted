@@ -1,4 +1,4 @@
-export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],orders:[],boys:[],newEmployees:[]}, action) => {
+export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],parkingBoys:[],orders:[],boys:[],newEmployees:[],newParkingLots:[],ownParkingLots:[],}, action) => {
     switch (action.type) {
         case 'INITEMPLOYEE': {
             let newState = JSON.parse(JSON.stringify(state));
@@ -65,6 +65,41 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
             newState.newEmployees = [...action.newEmployeeObject];
             return newState
         }
+        case 'ADD_PARKINGLOT': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.newParkingLots = [...action.newParkingLotObject];
+            return newState
+        }
+        case 'UPDATE_PARKINGLOT': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.parkingLots.forEach(parkingLot=>{
+                if(parkingLot.id === action.id)
+                    parkingLot.status=action.status
+                });
+            return newState
+        }
+        case 'FROZEN_OR_ACTIVED': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.employees.forEach(employee=>{
+                    if(employee.id == action.id)
+                        employee.alive=action.aliveStatus
+                }
+            )
+            return newState
+        }
+        case 'CHANGE_PARKINGLOT_UNDISTRIBUTED': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.parkingLots = [...action.undistributedParkingLots];
+            console.log("reducer--------------\n");
+            return newState
+        }
+        case 'SELECT_PARKINGLOT_UNDISTRIBUTED': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.undistributedParkingLots = [...action.undistributedParkingLots];
+            console.log("reducer--------------\n");
+            return newState
+        }
+
         default:
             return state
     }

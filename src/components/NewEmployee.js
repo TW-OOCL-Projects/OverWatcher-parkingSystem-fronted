@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Input,Button } from 'antd';
+import { Form, Input,Button,Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
+
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -36,7 +38,7 @@ class NormalLoginForm extends React.Component {
                     {getFieldDecorator('userName', {
                         rules: [{ required: true, message: '用户名不能为空!' }],
                     })(
-                        <Input placeholder="请输入姓名"/>
+                        <Input placeholder="请输入姓名" maxLength={20}/>
                     )}
                 </FormItem>
                 <FormItem
@@ -48,7 +50,11 @@ class NormalLoginForm extends React.Component {
                             required: true, message: '职务不能为空!',
                         }],
                     })(
-                        <Input type="text" placeholder="请输入职务" />
+                        /*<Input type="text" placeholder="请输入职务" />*/
+                        <Select defaultValue="员工" placeholder="请选择职务">
+                            <Option value="员工">员工</Option>
+                            <Option value="经理">经理</Option>
+                        </Select>
                     )}
                 </FormItem>
                 <FormItem
@@ -62,7 +68,7 @@ class NormalLoginForm extends React.Component {
                             required: true, message: '邮箱不能为空!',
                         }],
                     })(
-                        <Input type="email" placeholder="请输入邮箱" />
+                        <Input type="email" placeholder="请输入邮箱" maxLength={20}/>
                     )}
                 </FormItem>
                 <FormItem
@@ -74,7 +80,7 @@ class NormalLoginForm extends React.Component {
                             required: true, message: '电话号码不能为空!',
                         }],
                     })(
-                        <Input type="phone" placeholder="请输入电话号码" />
+                        <Input type="phone" placeholder="请输入电话号码" maxLength={20}/>
                     )}
                 </FormItem>
                 <FormItem {...formItemLayout} style={{textAlign:"right"}}>

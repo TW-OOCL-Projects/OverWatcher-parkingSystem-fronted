@@ -41,12 +41,30 @@ const initDashBoardsParkingLot = (DashBoardsparkingLotsObject) => {
 const addEmployee=(newEmployeeObject)=>{
     return{type:'ADD_EMPLOYEE',newEmployeeObject}
 };
+const addParkingLot=(newParkingLotObject)=>{
+    return{type:'ADD_PARKINGLOT',newParkingLotObject}
+};
+const alterParkinglotstatus=(id,status)=>{
+    return{type:'UPDATE_PARKINGLOT',id,status}
+};
+const changeAliveAction=(id,aliveStatus)=>{
+    return{type:'FROZEN_OR_ACTIVED',id,aliveStatus}
+};
+const changeParkingLotOwner=(undistributedParkingLots)=>{
+    return{type:'CHANGE_PARKINGLOT_UNDISTRIBUTED',undistributedParkingLots}
+};
+const undistributedParkingLotsAction=(undistributedParkingLots)=>{
+    return{type:'SELECT_PARKINGLOT_UNDISTRIBUTED',undistributedParkingLots}
+};
+
 export {initEmployee, initParkingLot, initParkingBoy,
     initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
     initDashBoardsParkingLot,searchParkingLotsByCondition,
     assignParkingboy,
     scramble,
     searchParkingBoysByCondition,
-    addEmployee
+    addEmployee,addParkingLot,alterParkinglotstatus,
+    changeAliveAction,changeParkingLotOwner,undistributedParkingLotsAction
 };
+
 
