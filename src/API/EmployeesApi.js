@@ -13,8 +13,8 @@ const employeesApi = {
             console.log("==== 获取所有员工列表 ====");
             console.log(response);
             this.employees = response.data.map(serviceData => {
-                const {id, name, email, phone, roleList, alive} = serviceData;
-                return {id, name, email, phone, role: roleList[0], alive};
+                const {id, name,username, email, phone, roleList, alive} = serviceData;
+                return {id, name,username, email, phone, role: roleList[0], alive};
             });
             dispatch(initEmployee(this.employees));
         }).catch(function (error) {
