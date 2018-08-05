@@ -81,7 +81,7 @@ const employeesApi = {
     frozenOrUnfrozen(userId, aliveStatus, finish, dispatch) {
         axios({
             method: 'put',
-            url: 'http://localhost:9090/employees',
+            url: `http://localhost:9090/employees/${userId}/alive`,
             data: {
                 id: userId,
                 alive: aliveStatus
