@@ -45,6 +45,7 @@ export default class LoginForm extends Component {
                         }else{
                             this.props.history.push('/manager')
                         }
+                        message.success('登录成功！', 2.5);
                     }
                 }).catch(function (error) {
                 message.error('用户名或密码错误！',1);
