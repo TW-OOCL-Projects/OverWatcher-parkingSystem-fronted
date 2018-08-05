@@ -23,11 +23,13 @@ const columns = [{
     title: '电话号码',
     dataIndex: 'phone',
     key: 'phone',
-}, {
-    title: '状态',
-    dataIndex: 'status',
-    key: 'status',
-}, {
+},
+//     {
+//     title: '状态',
+//     dataIndex: 'status',
+//     key: 'status',
+// },
+    {
     title: '操作',
     key: 'command',
     render: (text, record) => (
@@ -48,8 +50,8 @@ export default class Employees extends Component {
     render() {
 
         const datas = (this.props.parkingBoys).map((boy, index) => {
-            const {id, name, email, phone, status, role} = boy;
-            return {key: index, id, name, email, phone, status, role}
+            const {id, name, email, phone, role} = boy;
+            return {key: index, id, name, email, phone, role}
         });
         return (
             <div>

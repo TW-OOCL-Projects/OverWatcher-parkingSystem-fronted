@@ -11,7 +11,11 @@ const Search = Input.Search;
 export default class Employees extends Component {
     constructor(props) {
         super(props)
-        this.state = {editing: props.Employees.map(emp=>false)}
+        this.state = {
+            editing: props.Employees.map(emp=>false),
+            visible: false,
+            selected: "name"
+        }
     }
 
     columns = [{
@@ -110,10 +114,7 @@ export default class Employees extends Component {
         }
     }
 
-    state = {
-        visible: false,
-        selected: "name",
-    };
+
 
     showModal = () => {
         this.setState({
