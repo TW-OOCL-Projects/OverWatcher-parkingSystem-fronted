@@ -10,7 +10,9 @@ const mapStateToProps = (state, ownProps) =>{
 };
 
 const mapDispatchToProps = (dispatch, ownProps) =>{
-    return null;
+    return {
+
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard)

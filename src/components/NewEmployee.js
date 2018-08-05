@@ -51,9 +51,9 @@ class NormalLoginForm extends React.Component {
                         }],
                     })(
                         /*<Input type="text" placeholder="请输入职务" />*/
-                        <Select defaultValue="employee">
-                            <Option value="employee">员工</Option>
-                            <Option value="manager">经理</Option>
+                        <Select defaultValue="员工" placeholder="请选择职务">
+                            <Option value="员工">员工</Option>
+                            <Option value="经理">经理</Option>
                         </Select>
                     )}
                 </FormItem>

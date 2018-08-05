@@ -47,12 +47,17 @@ const addParkingLot=(newParkingLotObject)=>{
 const alterParkinglotstatus=(id,status)=>{
     return{type:'UPDATE_PARKINGLOT',id,status}
 };
+const changeAliveAction=(id,aliveStatus)=>{
+    return{type:'FROZEN_OR_ACTIVED',id,aliveStatus}
+};
 export {initEmployee, initParkingLot, initParkingBoy,
     initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
     initDashBoardsParkingLot,searchParkingLotsByCondition,
     assignParkingboy,
     scramble,
     searchParkingBoysByCondition,
-    addEmployee,addParkingLot,alterParkinglotstatus
+    addEmployee,addParkingLot,alterParkinglotstatus,
+    changeAliveAction
 };
+
 
