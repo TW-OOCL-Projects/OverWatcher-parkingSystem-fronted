@@ -65,9 +65,13 @@ const employeesApi = {
             .then(res => {
                 console.log(res);
                 dispatch(addEmployee(values));
-                this.init(dispatch)
-                message.success('员工新建成功！', 2);
-
+                this.init(dispatch);
+                message.success('员工新建成功！',2);
+                setTimeout(()=>{
+                    alert("登录用户名与密码已自动生成，请及时把以下信息通知给该新建员工："+
+                        "\n\n登录用户名："+res.data.userName+
+                        "\n\n登录密码："+res.data.password);
+                },2000)
             })
             .catch(function (error) {
                 console.log(error);
