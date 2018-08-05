@@ -30,12 +30,19 @@ export default class LoginForm extends Component {
                     }else{
                         window.localStorage.token = response.data.token;
                         window.localStorage.roles = response.data.roles;
+                        window.localStorage.username = response.data.username;
                         employeesApi.init(store.dispatch);
                         parkingLotApi.init(store.dispatch);
                         parkingBoyApi.init(store.dispatch);
                         DashBoardsApi.init(store.dispatch);
                         order.init(store.dispatch);
-                        this.props.history.push('/manager/employees')
+                        if(window.localStorage.roles==="管理员"){
+                            this.props.history.push('/manager/employees')
+                        }else if(window.localStorage.roles==="经理"){
+                            this.props.history.push('/manager/parkinglots')
+                        }else{
+                            this.props.history.push('/manager')
+                        }
                     }
                 }).catch(function (error) {
                 message.error('用户名或密码错误！',1);
