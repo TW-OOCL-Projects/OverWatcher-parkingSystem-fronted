@@ -50,6 +50,7 @@ const parkingLotsApi = {
             }
         }).then((response) => {
             dispatch(alterParkinglotstatus(parkinglotId, parkinglotStatus));
+            this.init(dispatch)
         }).catch(function (error) {
             console.log(error);
         })
