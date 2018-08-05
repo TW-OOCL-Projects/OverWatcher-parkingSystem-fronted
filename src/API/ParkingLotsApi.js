@@ -2,8 +2,8 @@ import {initParkingLot, searchParkingLotsByCondition, alterParkinglotstatus, add
 import axios from "axios";
 import {message} from "antd/lib/index";
 
-// let url = `https://over-back.herokuapp.com`;
-let url = `http://localhost:9090`;
+let url = `https://over-back.herokuapp.com`;
+// let url = `http://localhost:9090`;
 const parkingLotsApi = {
 
     parkingLots: [],
@@ -38,10 +38,16 @@ const parkingLotsApi = {
     },
 
     updateParkinglotstatus(parkinglotId, parkinglotStatus, dispatch) {
-        axios.put(`${url}/parkingLots/status`, {
-            id: parkinglotId,
-            status: parkinglotStatus,
-            headers: {"Authorization": window.localStorage.token},
+        axios({
+            method: 'put',
+            url:  `${url}/parkingLots/status`,
+            data:{
+                id: parkinglotId,
+                status: parkinglotStatus,
+            },
+            headers:{
+                "Authorization": window.localStorage.token
+            }
         }).then((response) => {
             dispatch(alterParkinglotstatus(parkinglotId, parkinglotStatus));
         }).catch(function (error) {

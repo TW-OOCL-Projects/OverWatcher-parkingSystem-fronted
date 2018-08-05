@@ -9,6 +9,8 @@ import parkingBoyApi from '../API/ParkingBoysApi'
 import order from '../API/orderApi'
 import store from '../index'
 
+let url = `https://over-back.herokuapp.com`;
+// let url = `http://localhost:9090`;
 export default class LoginForm extends Component {
     constructor(props){
         super(props);
@@ -21,7 +23,7 @@ export default class LoginForm extends Component {
         if(inputUser+inputPwd===""){
             message.error('用户名或密码不能为空！',1);
         }else{
-            axios.post('http://localhost:9090/auth/login', {
+            axios.post(`${url}/auth/login`, {
                 "username":inputUser,
                 "password":inputPwd})
                 .then((response) => {
