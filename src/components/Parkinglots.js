@@ -46,7 +46,7 @@ export default class Parkinglots extends Component{
                     return(
                         <span>
                             {/*<a className="ant-dropdown-link">修改 </a>*/}
-                            <Divider type="vertical"/>
+                            {/*<Divider type="vertical"/>*/}
                             <a onClick={() =>this.update(record.parkingLotId, record.status)}>{record.status=="开放" ? '关闭' : '开放'}</a>
                         </span>
                     )}
