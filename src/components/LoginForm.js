@@ -9,6 +9,8 @@ import parkingBoyApi from '../API/ParkingBoysApi'
 import order from '../API/orderApi'
 import store from '../index'
 
+let url = `https://over-back.herokuapp.com`;
+// let url = `http://localhost:9090`;
 export default class LoginForm extends Component {
     constructor(props){
         super(props);
@@ -21,18 +23,29 @@ export default class LoginForm extends Component {
         if(inputUser+inputPwd===""){
             message.error('用户名或密码不能为空！',1);
         }else{
-            axios.post('http://localhost:9090/auth/login', {
+            axios.post(`${url}/auth/login`, {
                 "username":inputUser,
                 "password":inputPwd})
                 .then((response) => {
-                    window.localStorage.token = response.data.token;
-                    window.localStorage.roles = response.data.roles;
-                    employeesApi.init(store.dispatch);
-                    parkingLotApi.init(store.dispatch);
-                    parkingBoyApi.init(store.dispatch);
-                    DashBoardsApi.init(store.dispatch);
-                    order.init(store.dispatch);
-                    this.props.history.push('/manager/employees')
+                    if(response.data.msg!=="true"){
+                        message.error(response.data.msg,1);
+                    }else{
+                        window.localStorage.token = response.data.token;
+                        window.localStorage.roles = response.data.roles;
+                        window.localStorage.username = response.data.username;
+                        employeesApi.init(store.dispatch);
+                        parkingLotApi.init(store.dispatch);
+                        parkingBoyApi.init(store.dispatch);
+                        DashBoardsApi.init(store.dispatch);
+                        order.init(store.dispatch);
+                        if(window.localStorage.roles==="管理员"){
+                            this.props.history.push('/manager/employees')
+                        }else if(window.localStorage.roles==="经理"){
+                            this.props.history.push('/manager/parkinglots')
+                        }else{
+                            this.props.history.push('/manager')
+                        }
+                    }
                 }).catch(function (error) {
                 message.error('用户名或密码错误！',1);
                 console.log(error);
@@ -52,14 +65,14 @@ export default class LoginForm extends Component {
                     <Card title="Login In" style={{boxShadow:"#ccc 5px 5px 20px 5px"}} className="login-box animated bounceIn">
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                placeholder="请输入用户名"
-                        ref={this.userName}/>
+                               ref={this.userName}/>
                         <br/><br/>
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password"
                                placeholder="请输入密码"
-                        ref={this.pwd}/>
+                               ref={this.pwd}/>
                         <br/><br/>
                         <Button type="primary" htmlType="submit" onClick={e => this.getEmployees()}
-                            className="login-form-button" style={{width:"100%"}}>登录</Button> 
+                                className="login-form-button" style={{width:"100%"}}>登录</Button>
                     </Card>
                 </Col>
             </div>

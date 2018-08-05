@@ -53,15 +53,24 @@ const changeAliveAction=(id,aliveStatus)=>{
 const editEmployeeAction=(employee)=>{
     return{type:'EDIT_EMPLOYEE',employee}
 }
+const changeParkingLotOwner=(undistributedParkingLots)=>{
+    return{type:'CHANGE_PARKINGLOT_UNDISTRIBUTED',undistributedParkingLots}
+};
+const undistributedParkingLotsAction=(undistributedParkingLots)=>{
+    return{type:'SELECT_PARKINGLOT_UNDISTRIBUTED',undistributedParkingLots}
+};
+
 export {initEmployee, initParkingLot, initParkingBoy,
     initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
     initDashBoardsParkingLot,searchParkingLotsByCondition,
     assignParkingboy,
     scramble,
     searchParkingBoysByCondition,
-    addEmployee,addParkingLot,alterParkinglotstatus,
+    addEmployee,addParkingLot,
+    alterParkinglotstatus,
     changeAliveAction,
-    editEmployeeAction
+    editEmployeeAction,
+    changeParkingLotOwner,undistributedParkingLotsAction
 };
 
 

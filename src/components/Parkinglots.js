@@ -19,13 +19,13 @@ export default class Parkinglots extends Component{
         super(props);
         this.columns = [{
             title: 'Id',
-            dataIndex: 'id',
-            key: 'id',
+            dataIndex: 'parkingLotId',
+            key: 'parkingLotId',
             render: text => <a>{text}</a>,
         }, {
-            title: '姓名',
-            dataIndex: 'name',
-            key: 'name',
+            title: '名称',
+            dataIndex: 'parkingLotName',
+            key: 'parkingLotName',
         }, {
             title: '剩余车位',
             dataIndex: 'size',
@@ -47,7 +47,7 @@ export default class Parkinglots extends Component{
                         <span>
                             <a className="ant-dropdown-link">修改 </a>
                             <Divider type="vertical"/>
-                            <a onClick={() =>this.update(record.id, record.status)}>{record.status=="开放" ? '关闭' : '开放'}</a>
+                            <a onClick={() =>this.update(record.parkingLotId, record.status)}>{record.status=="开放" ? '关闭' : '开放'}</a>
                         </span>
                     )}
             },
@@ -93,8 +93,8 @@ export default class Parkinglots extends Component{
 
     render(){
         const datas=(this.props.Parkinglots).map((lot,index)=>{
-            const {id,name,size,status,initSize}=lot;
-            return {key:index ,id,name,size,status,initSize}
+            const {parkingLotId,parkingLotName,size,status,initSize}=lot;
+            return {key:index ,parkingLotId,parkingLotName,size,status,initSize}
         });
 
         const store = createStore(rootReducer);

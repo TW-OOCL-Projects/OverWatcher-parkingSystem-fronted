@@ -1,11 +1,14 @@
 import {initOrderApi, searchOrdersByCondition,assignParkingboy,scramble} from "../actions";
 import axios from "axios";
 
+
+let url = `https://over-back.herokuapp.com`;
+// let url = `http://localhost:9090`;
 const ordersApi = {
 
     parkingBoys: [],
     updateServerData(dispatch, token) {
-        axios.get(`http://localhost:9090/orders`, {
+        axios.get(`${url}/orders`, {
             headers: {"Authorization": token}
         }).then((response) => {
             dispatch(initOrderApi(response.data));
@@ -15,7 +18,7 @@ const ordersApi = {
     },
 
     findOrdersByConditions(value, selected, dispatch) {
-        axios.get("http://localhost:9090/orders/condition", {
+        axios.get(`${url}/orders/condition`, {
             headers: {"Authorization": window.localStorage.token},
             params:{
                 condition:selected,
@@ -29,7 +32,7 @@ const ordersApi = {
         })
     },
     assigned(id,dispatch) {
-        axios.get(`http://localhost:9090/employees/onWork`, {
+        axios.get(`${url}/employees/onWork`, {
             headers: {"Authorization": window.localStorage.token}
         }).then((response) => {
             dispatch(assignParkingboy(response.data));
@@ -40,7 +43,7 @@ const ordersApi = {
     qiangdan(dispatch, orderId, boyId) {
         axios
             .put(
-                `http://localhost:9090/orders/${orderId}/parkingBoy/${boyId}`,
+                `${url}/orders/${orderId}/parkingBoy/${boyId}`,
                 {
                     headers: {"Authorization": window.localStorage.token},
                 }
