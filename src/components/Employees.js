@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal} from 'antd';
+import {Table, Divider, Button, Input, Select, Row, Col, Icon, Modal, Popconfirm,message} from 'antd';
 import WrappedNormalLoginForm from "../containers/NewEmployeeContainer";
 
 const Option = Select.Option;
@@ -7,11 +7,11 @@ const Option = Select.Option;
 const Search = Input.Search;
 
 
-
 export default class Employees extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
+
     columns = [{
         title: 'Id',
         dataIndex: 'id',
@@ -37,21 +37,44 @@ export default class Employees extends Component {
         },
         {
             title: '操作',
-            dataIndex: 'command',
-            key: 'command',
+            dataIndex: 'alive',
+            key: 'alive',
             render: (text, record) => (
                 <span>
                         <a className="ant-dropdown-link">修改 </a>
                         <Divider type="vertical"/>
-                        <a onClick={()=>{this.frozen(record)}}>冻结</a>
+                    {record.alive ? (<Popconfirm
+                            title="冻结后该用户将无法登录，确定冻结吗？"
+                            onConfirm={() => {
+                                this.frozenOrActived(record)
+                            }}
+                        >
+                            <a>冻结</a>
+                        </Popconfirm>)
+                        : (
+                            <a onClick={()=>{
+                                this.frozenOrActived(record)
+                            }}>激活</a>
+                        )
+                    }
                     </span>
             )
         }];
-
-    frozen=(record)=>{
+    finishActivated=()=>{
+        message.success('激活成功', 1);
+    }
+    finishFrozen=()=>{
+        message.success('冻结成功', 1);
+    }
+    frozenOrActived = (record) => {
         console.log("员工表格\n---------------------------")
         console.log(record)
-        this.props.frozenOrUnfrozen(record.id,record.status)
+        const aliveStatus=!record.alive
+        if (record.alive) {
+            this.props.frozenOrUnfrozen(record.id,aliveStatus,this.finishFrozen)
+        }else {
+            this.props.frozenOrUnfrozen(record.id,aliveStatus,this.finishActivated)
+        }
     }
 
     state = {
@@ -71,7 +94,7 @@ export default class Employees extends Component {
     //         visible: false,
     //     });
     // };
-    hideModal = () =>{
+    hideModal = () => {
         this.setState({
             visible: false,
         });
@@ -86,14 +109,15 @@ export default class Employees extends Component {
 
     render() {
         const datas = (this.props.Employees).map((emp, index) => {
-            const {id, name, email, phone, role} = emp;
-            return {key: index, id, name, email, phone, role}
+            const {id, name, email, phone, role, alive} = emp;
+            return {key: index, id, name, email, phone, role, alive}
         });
 
         return (
             <div>
                 <Row>
-                    <Col span={4} style={{textAlign: "left"}}><Button onClick={this.showModal} type="primary"> 新建员工 </Button></Col>
+                    <Col span={4} style={{textAlign: "left"}}><Button onClick={this.showModal}
+                                                                      type="primary"> 新建员工 </Button></Col>
                     <Modal
                         title="新建员工"
                         visible={this.state.visible}
@@ -106,7 +130,7 @@ export default class Employees extends Component {
                     <Col span={16} offset={4} style={{textAlign: "right"}}>
                         <Select defaultValue={this.state.selected} style={{width: 120}} onChange={value => {
                             this.setState({
-                                selected:value
+                                selected: value
                             })
                         }}>
                             <Option value="email">邮箱</Option>
@@ -115,7 +139,8 @@ export default class Employees extends Component {
                             <Option value="role">职务</Option>
                         </Select>&nbsp;&nbsp;
                         <Search prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                onSearch={value => this.selectedByConditions(value, this.state.selected)} style={{width: 200}}
+                                onSearch={value => this.selectedByConditions(value, this.state.selected)}
+                                style={{width: 200}}
                                 enterButton="搜索"/>
                     </Col>
                 </Row>

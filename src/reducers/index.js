@@ -79,6 +79,17 @@ export default  (state={employees:[],parkingLots:[],DashBoardsparkingLots:[],par
             )
             return newState
         }
+        case 'FROZEN_OR_ACTIVED': {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.employees.forEach(employee=>{
+                    if(employee.id == action.id)
+                        employee.alive=action.aliveStatus
+                }
+            )
+            return newState
+        }
+
+
         default:
             return state
     }
