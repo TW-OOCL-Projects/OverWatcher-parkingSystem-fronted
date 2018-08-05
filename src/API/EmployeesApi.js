@@ -2,12 +2,13 @@ import {initEmployee, searchEmployeesByCondition, addEmployee, changeAliveAction
 import axios from "axios";
 import {message} from "antd/lib/index";
 
-let url = `http://localhost:9090/employees`;
+// let url = `https://over-back.herokuapp.com`;
+let url = `http://localhost:9090`;
 const employeesApi = {
 
     employees: [],
     init(dispatch) {
-        axios.get(url, {
+        axios.get(`${url}/employees`, {
             headers: {"Authorization": window.localStorage.token}
         }).then((response) => {
             console.log("==== 获取所有员工列表 ====");
@@ -23,7 +24,7 @@ const employeesApi = {
     },
 
     findEmployeesByConditions(value, selected, dispatch) {
-        let url1 = "http://localhost:9090/employees";
+        let url1 = `${url}/employees`;
         if (selected === "name") {
             url1 += "/" + selected + "?" + selected + "=" + value;
             console.log(url1);
@@ -55,7 +56,7 @@ const employeesApi = {
     addNewEmployee(values, dispatch) {
 
         axios
-            .post("http://localhost:9090/employees", {
+            .post(`${url}/employees`, {
                 // headers: {"Authorization": window.localStorage.token},
                 name: values.userName,
                 roleList: [{name: values.role}],
@@ -81,7 +82,7 @@ const employeesApi = {
     frozenOrUnfrozen(userId, aliveStatus, finish, dispatch) {
         axios({
             method: 'put',
-            url: `http://localhost:9090/employees/${userId}/alive`,
+            url: `${url}/employees/${userId}/alive`,
             data: {
                 id: userId,
                 alive: aliveStatus

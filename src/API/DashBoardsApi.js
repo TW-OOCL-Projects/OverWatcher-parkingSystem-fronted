@@ -1,11 +1,13 @@
 import {initDashBoardsParkingLot} from "../actions";
 import axios from "axios";
 
+// let url = `https://over-back.herokuapp.com`;
+let url = `http://localhost:9090`;
 const DashBoardsApi = {
 
     parkingLots: [],
     updateServerData(dispatch, token) {
-        axios.get(`http://localhost:9090/parkingLots/statistical`, {
+        axios.get(`${url}/parkingLots/statistical`, {
             headers: {"Authorization": token}
         }).then((response) => {
             console.log(response.data);
