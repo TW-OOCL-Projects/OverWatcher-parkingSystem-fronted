@@ -50,6 +50,13 @@ const alterParkinglotstatus=(id,status)=>{
 const changeAliveAction=(id,aliveStatus)=>{
     return{type:'FROZEN_OR_ACTIVED',id,aliveStatus}
 };
+const changeParkingLotOwner=(undistributedParkingLots)=>{
+    return{type:'CHANGE_PARKINGLOT_UNDISTRIBUTED',undistributedParkingLots}
+};
+const undistributedParkingLotsAction=(undistributedParkingLots)=>{
+    return{type:'SELECT_PARKINGLOT_UNDISTRIBUTED',undistributedParkingLots}
+};
+
 export {initEmployee, initParkingLot, initParkingBoy,
     initOrderApi, searchOrdersByCondition,searchEmployeesByCondition,
     initDashBoardsParkingLot,searchParkingLotsByCondition,
@@ -57,7 +64,7 @@ export {initEmployee, initParkingLot, initParkingBoy,
     scramble,
     searchParkingBoysByCondition,
     addEmployee,addParkingLot,alterParkinglotstatus,
-    changeAliveAction
+    changeAliveAction,changeParkingLotOwner,undistributedParkingLotsAction
 };
 
 
