@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         frozenOrUnfrozen:(userId,aliveStatus,finish)=>{
             EmployeesApi.frozenOrUnfrozen(userId,aliveStatus,finish,dispatch)
+        },
+        confirm:(userId,user,finish)=>{
+            EmployeesApi.editEmploy(userId,user,finish,dispatch)
         }
     }
 };
