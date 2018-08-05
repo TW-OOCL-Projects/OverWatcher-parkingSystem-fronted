@@ -6,12 +6,20 @@ import Parkinglots from '../containers/ParkingLotsContainer'
 import Parkingboys from '../containers/ParkingBoysContainer'
 import Dashboards from '../containers/DashBoardsContainer'
 import Orders from '../containers/OrdersContainer'
-import {Avatar, Col, Layout, Menu} from 'antd';
+import {Avatar, Col, Layout, Menu,Button,Icon} from 'antd';
 
-const {Header, Content, Footer, Sider} = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
-export default class EmployeeManagerInterface extends Component {
-    render() {
+export default class EmployeeManagerInterface extends Component{
+    logout=()=>{
+        window.localStorage.roles = undefined;
+        this.props.history.push('/')
+    };
+    render(){
+        console.log(window.localStorage.roles);
+        if(window.localStorage.roles === "undefined"){
+            this.props.history.push('/')
+        }
         let role = window.localStorage.roles;
         let auth = true;
         if (role !== "管理员" && role !== "经理") {
@@ -19,24 +27,28 @@ export default class EmployeeManagerInterface extends Component {
             // return (<div style={{fontSize:"20px"}}>抱歉，您没有权限访问！</div>);
         }
 
-        return (
-            <Layout>
-                <Header className="header">
-                    <div className="logo"/>
-                    <Menu
-                        theme="dark"
-                        mode="horizontal"
-                        style={{lineHeight: '64px'}}
-                    >
-                        <Col span={8} offset={2} style={{color: "#fff", fontSize: "1.5em", textAlign: "left"}}>
-                            Welcome to OverWatcher Parking System!
-                        </Col>
-                        <Col span={12} style={{textAlign: "right"}}>
-                            <Avatar style={{backgroundColor: '#87d068'}} icon="user"/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <span style={{color: "#fff"}}>
+        return(
+        <Layout>
+            <Header className="header">
+                <div className="logo" />
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    style={{ lineHeight: '64px' }}
+                >
+                    <Col span={8} offset={2} style={{color:"#fff",fontSize:"1.5em",textAlign:"left"}}>
+                        Welcome to OverWatcher Parking System!
+                    </Col>
+                    <Col span={6} offset={6} style={{textAlign:"right"}}>
+                        <Avatar style={{ backgroundColor: '#1890ff' }} icon="user"/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{color:"#fff"}}>
                             您好，{window.localStorage.username} [{window.localStorage.roles}]！
                         </span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <Button onClick={this.logout} type="danger">
+                            <Icon type="poweroff" /> 退出登录
+                        </Button>
                         </Col>
                     </Menu>
                 </Header>
