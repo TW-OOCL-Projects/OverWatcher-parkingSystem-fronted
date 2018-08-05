@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Table, Divider, Button, Input, Select, Col, Icon, Row, Modal, Popconfirm, message} from 'antd';
 import Transfers from "./Transfers";
-import EditEmployeeBox from "./EmployeeEditBox";
+import EditParkingByBox from "./ParkingBoyEditBox";
 
 const Option = Select.Option;
 
 const Search = Input.Search;
 
 
-export default class Employees extends Component {
+export default class ParkingBoy extends Component {
     constructor(props) {
         super(props)
         this.state = {
             selected: "name",
-            editing: props.parkingBoys.map(boy => false)
+            editing: props.parkingBoys.map(emp=>false)
         };
 
     }
@@ -45,22 +45,8 @@ export default class Employees extends Component {
         key: 'alive',
         render: (text, record) => (
             <span>
-                        <a className="ant-dropdown-link" onClick={() => {
-                            this.edit(record)
-                        }}>修改 </a>
-                    <Modal
-                        title="修改员工信息"
-                        visible={this.state.editing[record.key]}
-                        onOk={this.handleOk}
-                        onCancel={this.handleCancel}
-                        footer={null}
-                    >
-                        <EditEmployeeBox parkingBoyMsg={record} close={this.handleCancel}
-                                         editConfirm={this.props.confirm}/>
-                    </Modal>
-                        <Divider type="vertical"/>
                 {record.alive ? (<Popconfirm
-                        title="冻结后该用户将无法登录，确定冻结吗？"
+                        title="冻结后该停车员将无法登录，确定冻结吗？"
                         onConfirm={() => {
                             this.frozenOrActived(record)
                         }}
@@ -78,16 +64,24 @@ export default class Employees extends Component {
     }];
 
     edit = (record) => {
+        console.log("=== 点击修改停车员信息 ===")
+        console.log(this.props.parkingBoys)
+        // this.setState ({
+        //     editing:[1,1,1,1]
+        // });
+        console.log(this.state)
         this.setState(preState => {
-            console.log("=== 点击修改 ===")
+
             let newState = JSON.parse(JSON.stringify(this.state));
-            console.log(newState)
+            console.log(preState)
             console.log(record)
 
             newState.editing[record.key] = true
 
             return newState
         })
+        console.log(this.state)
+
     }
 
     finishActivated = () => {
@@ -97,7 +91,7 @@ export default class Employees extends Component {
         message.success('冻结成功', 1);
     }
     frozenOrActived = (record) => {
-        console.log("停车兄弟表格\n---------------------------")
+        console.log("=== 冻结或激活的Parking Boy ===")
         console.log(record)
         const aliveStatus = !record.alive
         if (record.alive) {
@@ -107,18 +101,44 @@ export default class Employees extends Component {
         }
     }
 
-    handleCancel = (e) => {
-        console.log("=== 模态框关闭 ===");
-        console.log(e);
-        this.setState({
-            editing: this.props.Employees.map(emp => false),
-            visible: false
-        });
-    };
+
+    generateTransfer = (e) => {
+        console.log("=============================== e =================================")
+        console.log(this.props.parkingLots)
+        const parkinglotLeftData = this.props.parkingLots.filter(lot =>
+            (lot.status === "开放" && (lot.userId === 0))
+        )
+        const parkinglotRightData = this.props.parkingLots.filter(lot =>
+            (lot.status === "开放" && (lot.userId === e.id))
+        )
+        console.log("=============================== after =================================")
+        console.log(parkinglotLeftData);
+        console.log(parkinglotRightData);
+        return (
+            <p style={{textAlign: "center", margin: 0}}><Transfers left={parkinglotLeftData} right={parkinglotRightData}
+                                                                   id={e.id}/></p>)
+    }
+
+    selectedByConditions(value, selected) {
+        if (value === "") {
+            alert("请输入文本");
+        } else {
+            this.props.selectedParkingBoysByValue(value, selected);
+        }
+    }
+
 
 
     render() {
+        // console.log("=== =============== ===")
+        // console.log(this.props.parkingBoys)
+        //
+        // this.setState({
+        //     editing:this.props.parkingBoys.map(boy=>false)
+        // })
+        // console.log(this.state.editing)
 
+        const editing= this.props.parkingBoys.map(emp=>false);
         const datas = (this.props.parkingBoys).map((boy, index) => {
             const {id, name, email, phone, status, role,alive} = boy;
             return {key: index, id, name, email, phone, status, role,alive}
@@ -155,28 +175,5 @@ export default class Employees extends Component {
         );
     }
 
-    generateTransfer = (e) => {
-        console.log("=============================== e =================================")
-        console.log(this.props.parkingLots)
-        const parkinglotLeftData = this.props.parkingLots.filter(lot =>
-            (lot.status === "开放" && (lot.userId === 0))
-        )
-        const parkinglotRightData = this.props.parkingLots.filter(lot =>
-            (lot.status === "开放" && (lot.userId === e.id))
-        )
-        console.log("=============================== after =================================")
-        console.log(parkinglotLeftData);
-        console.log(parkinglotRightData);
-        return (
-            <p style={{textAlign: "center", margin: 0}}><Transfers left={parkinglotLeftData} right={parkinglotRightData}
-                                                                   id={e.id}/></p>)
-    }
 
-    selectedByConditions(value, selected) {
-        if (value === "") {
-            alert("请输入文本");
-        } else {
-            this.props.selectedParkingBoysByValue(value, selected);
-        }
-    }
 }

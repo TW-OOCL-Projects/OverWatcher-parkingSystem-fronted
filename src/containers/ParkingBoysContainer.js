@@ -4,6 +4,9 @@ import ParkingBoysApi from "../API/ParkingBoysApi"
 import EmployeesApi from "../API/EmployeesApi";
 
 const mapStateToProps = (state, ownProps) =>{
+    console.log("--------");
+    console.log(state);
+
     return {
         value: state[ownProps.index],
         parkingBoys:state.parkingBoys,
