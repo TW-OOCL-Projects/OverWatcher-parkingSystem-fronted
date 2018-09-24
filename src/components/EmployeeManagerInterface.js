@@ -49,7 +49,7 @@ export default class EmployeeManagerInterface extends Component{
                     <Col span={8} offset={2} style={{color:"#fff",fontSize:"1.5em",textAlign:"left"}}>
                         Welcome to OverWatcher Parking System!
                     </Col>
-                    <Col span={6} offset={6} style={{textAlign:"right"}}>
+                    <Col span={12} style={{textAlign:"right"}}>
                         <Avatar style={{ backgroundColor: '#1890ff' }} icon="user"/>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <span style={{color:"#fff"}}>
